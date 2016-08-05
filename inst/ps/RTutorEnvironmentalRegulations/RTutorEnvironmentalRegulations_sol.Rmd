@@ -16,16 +16,6 @@ libs = c("ggplot2","foreign","AER","lfe","dplyr", "yaml", "devtools", "yarrr", "
 #name.rmd.chunks(sol.file) # set auto chunk names in this file
 create.ps(sol.file=sol.file, ps.name=ps.name, user.name=NULL,libs=libs, stop.when.finished=FALSE, addons="quiz", use.memoise = TRUE, var.txt.file = "variables.txt", extra.code.file = "functions.r", rps.has.sol = TRUE)
 
-rtutor.package.skel(sol.file=sol.file, ps.name=ps.name,libs=libs,
-    pkg.name="RTutorEnvironmentalRegulations",   # Name of the problem set package
-    pkg.parent.dir = "~/Uni Ulm/Master/Masterarbeit/ProblemSet/Beispiel/RTutorExample", 
-    author="Moritz Sporer", # Your name
-    github.user="msporer",     # Your github user name
-    extra.code.file="functions.r", # name of extra.code.file
-    var.txt.file="variables.txt",    # name of var.txt.file
-    overwrite=FALSE  # Do you want to override if package directory exists?
-  )
-
 
 show.shiny.ps(ps.name, load.sav=FALSE,  sample.solution=TRUE, is.solved=FALSE, catch.errors=TRUE, launch.browser=TRUE)
 stop.without.error()
