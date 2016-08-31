@@ -2573,4 +2573,4 @@ reg.summary(rents1, rents10)
 #>
 ``` 
 
-As you can see the values for the coefficients, which represent the effect of PM$_{10}$ reductions on changes in rents, are (0.0043) for the areas included in `mile1` and (-0.0023) for the areas included in `mile10`. But due to the p-values of around (0.14) and (0.21) respectively these results are not significantly different from zero. 
+As you can see the values for the coefficients, which represent the effect of PM$_{10}$ reductions on changes in rents, are (0.0043) for the areas included in `mile1` and (-0.0023) for the areas included in `mile10`. But due to the p-values of around (0.14) and (0.21) respectively these results are not significantly different from zero.
