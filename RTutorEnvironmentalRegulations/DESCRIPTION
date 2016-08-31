@@ -1,0 +1,12 @@
+Package: RTutorEnvironmentalRegulations
+Type: Package
+Title: RTutor problem set RTutorEnvironmentalRegulations
+Version: 0.1
+Date: 2016-31-08
+Author: Moritz Sporer
+Maintainer: Moritz Sporer <author@email.net>
+Description: RTutor problem set RTutorEnvironmentalRegulations
+License: Not yet licensed by the author. The default suggestion for licensing is
+	Problem set content: Creative Commons (CC BY-SA)
+	Package code: GPL >= 2.0
+Depends: RTutor, ggplot2, foreign, AER, lfe, dplyr, yaml, devtools, yarrr, stargazer, svgdiagram

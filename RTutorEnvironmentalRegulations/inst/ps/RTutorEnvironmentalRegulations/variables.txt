@@ -1,0 +1,83 @@
+orgvar | var | descr 
+
+state_code | state_code | Numeric state identifier
+county_code | county_code | Numeric county identifier 
+site_id | site_id | Site identifier of air quality monitor
+cnty_instr | cnty_instr | County non-attainment instrument. Ratio of non-attainment years during the time span 1992 to 1997
+pol_90 | pol_90 | 1990 PM10 concentration
+pol_dif | pol_dif | Change in PM10 concentration 2000-1990
+mntr_instr | mntr_instr | Monitor non-attainment instrument. Ratio of non-attainment years during the time span 1992 to 1997
+mntr_cont_instr_91 | mntr_cont_instr_91 | Equals the maximum of pm10 value in 1991 minus 50 or 0
+share_white_90 | share_white_90 | Share of population that is white 1990
+share_same_house_90 | share_same_house_90 | Share of households living in same house as 5 years ago
+share_unemployed_90 | share_unemployed_90 | Share of population that is unemployed 1990
+median_family_income_90 | median_family_income_90 | Median family income 1990
+median_house_value_90 | median_house_value_90 | Median house value 1990
+median_rent_90 | median_rent_90 | Median monthly rent 1990
+factor | factor | CMHPI price index change 2000-1990
+total_housing_units_90 | total_housing_units_90 | Total number of housing units 1990
+owner_occupied_units_90 | owner_occupied_units_90 | Number of owner occupied units 1990
+share_occ_own_90 | share_occ_own_90 | Share of housing units that are owner occupied 1990
+pop_dense_90 | pop_dense_90 | Population density 1990
+pop_dense_dif | pop_dense_dif | Change in Population density 2000-1990
+total_housing_units_dif | total_housing_units_dif | Change in Total number of housing units 2000-1990
+share_units_occupied_dif | share_units_occupied_dif | Change in Share of owner housing units occupied 2000-1990
+share_black_dif | share_black_dif | Change in share of population that is black 2000-1990
+share_white_dif | share_white_dif | Change in Share of population that is white 2000-1990
+share_latino_dif | share_latino_dif | Change in share of population that is latino 2000-1990
+share_kids_dif | share_kids_dif | Change in share of population that is under 5 years old 2000-1990
+share_over_65_dif | share_over_65_dif | Change in share of population that is over 65 years old 2000-1990
+share_foreign_born_dif | share_foreign_born_dif | Change in share of population that is foreign born 2000-1990
+share_female_hhhead_dif | share_female_hhhead_dif | Change in share of households with female head 2000-1990
+share_same_house_dif | share_same_house_dif | Change in share of households living in same house as 5 years ago 2000-1990
+share_unemployed_dif | share_unemployed_dif | Change in Share of population that is unemployed 2000-1990
+share_manuf_empl_dif | share_manuf_empl_dif | Change in share of population employed in manufacturing 2000-1990
+share_poor_dif | share_poor_dif | Change in share of population in poverty 2000-1990
+share_public_assistance_dif | share_public_assistance_dif | Change in share of population receiving public assistance 2000-1990
+median_family_income_dif | median_family_income_dif | Change in Median family income 2000-1990
+ln_med_fam_income_dif | ln_med_fam_income_dif | Change in log of family income 2000-1990
+median_house_value_dif | median_house_value_dif | Change in Median house value 2000-1990
+ln_median_house_value_dif | ln_median_house_value_dif | Change in log median house value 2000-1990
+share_edu_less_hs_dif | share_edu_less_hs_dif | Change in share of population with less than high school degree 2000-1990
+share_edu_16plus_dif | share_edu_16plus_dif | Change in share of population with college degree or more 2000-1990
+share_heat_coal_dif | share_heat_coal_dif | Change in share of housing units using coal for heat 2000-1990
+share_heat_wood_dif | share_heat_wood_dif | Change in share of housing units using wood for heat 2000-1990
+share_kitchen_none_dif | share_kitchen_none_dif | Change in share of housing units without a kitchen 2000-1990
+share_plumbing_full_dif | share_plumbing_full_dif | Change in share of housing units with full plumbing 2000-1990
+share_occ_own_dif | share_occ_own_dif | Change in Share of housing units that are owner occupied 2000-1990
+share_blt_5_10_own_dif | share_blt_5_10_own_dif | Change in Share of owner housing units that are between 5 and 10 years old 2000-1990
+share_blt_10_20_own_dif | share_blt_10_20_own_dif | Change in Share of owner housing units that are between 10 and 20 years old 2000-1990
+share_blt_30_40_own_dif | share_blt_30_40_own_dif | Change in Share of owner housing units that are between 30 and 40 years old 2000-1990
+share_blt_40_50_own_dif | share_blt_40_50_own_dif | Change in Share of owner housing units that are between 40 and 50 years old 2000-1990
+share_blt_50plus_own_dif | share_blt_50plus_own_dif | Change in Share of owner housing units that are over 50 years old 2000-1990
+share_blt_5_10_rnt_dif | share_blt_5_10_rnt_dif | Change in Share of rental housing units that are between 5 and 10 years old 2000-1990
+share_blt_10_20_rnt_dif | share_blt_10_20_rnt_dif | Change in Share of rental housing units that are between 10 and 20 years old 2000-1990
+share_blt_20_30_rnt_dif | share_blt_20_30_rnt_dif | Change in Share of rental housing units that are between 20 and 30 years old 2000-1990
+share_blt_30_40_rnt_dif | share_blt_30_40_rnt_dif | Change in Share of rental housing units that are between 30 and 40 years old 2000-1990
+share_blt_40_50_rnt_dif | share_blt_40_50_rnt_dif | Change in Share of rental housing units that are between 40 and 50 years old 2000-1990
+share_blt_50plus_rnt_dif | share_blt_50plus_rnt_dif | Change in Share of rental housing units that are over 50 years old 2000-1990
+share_single_unit_d_own_dif | share_single_unit_d_own_dif | Change in Share of owner housing units that are single and dettached units 2000-1990
+share_single_unit_a_own_dif | share_single_unit_a_own_dif | Change in Share of owner housing units that are single attached units 2000-1990
+share_mobile_home_own_dif | share_mobile_home_own_dif | Change in Share of owner housing units that are mobile homes 2000-1990
+share_single_unit_d_rnt_dif | share_single_unit_d_rnt_dif | Change in Share of rental housing units that are detached units 2000-1990
+share_single_unit_a_rnt_dif | share_single_unit_a_rnt_dif | Change in Share of rental housing units that are attached units 2000-1990
+share_mobile_home_rnt_dif | share_mobile_home_rnt_dif | Change in Share of rental housing units that are mobile homes 2000-1990
+share_bdrm2_rnt_dif | share_bdrm2_rnt_dif | Change in Share of rental housing units with 2 bedrooms 2000-1990
+share_bdrm3_rnt_dif | share_bdrm3_rnt_dif| Change in Share of rental housing units with 3 bedrooms 2000-1990
+share_bdrm4_rnt_dif | share_bdrm4_rnt_dif| Change in Share of rental housing units with 4 bedrooms 2000-1990
+share_bdrm5_rnt_dif | share_bdrm5_rnt_dif| Change in Share of rental housing units with 5 or more bedrooms 2000-1990
+share_bdrm2_own_dif | share_bdrm2_own_dif| Change in Share of owner housing units with 2 bedrooms 2000-1990
+share_bdrm3_own_dif | share_bdrm3_own_dif| Change in Share of owner housing units with 3 bedrooms 2000-1990
+share_bdrm4_own_dif | share_bdrm4_own_dif| Change in Share of owner housing units with 4 bedrooms 2000-1990
+share_bdrm5_own_dif | share_bdrm5_own_dif| Change in Share of owner housing units with 5 or more bedrooms 2000-1990
+median_rent_dif | median_rent_dif | Change in Median monthly rent 2000-1990
+ln_med_rent_dif | ln_med_rent_dif | Log Change in Median monthly rent in 2000-1990
+fips2 | fips2 | FIPS code. Used to cluster the standard deviation in the regression.
+ring | ring | 1 is 0-1 miles, 3 is 1-3 miles, 5 is 3-5 miles, 10 is 5-10 miles, 20 is 10-20 miles when you talk about the distance of the centre of an area to the next monitor
+group1 | group1 | equals 1 if monitor is in-attainment and county is in-attainment
+group2 | group2 | equals 1 if monitor is in-attainment and county is out-of-attainment
+group3 | group3 | equals 1 if monitor out-of-attainment
+share_black_dif_80 | share_black_dif_80 | Change in share of population that is black 1990-1980
+pop_dif_80 | pop_dif_80 | Change in population density 1990-1980
+total_housing_units_dif_80 | total_housing_units_dif_80 | Change in total housing units 1990-1980
+ln_avg_fam_income_dif_80 | ln_avg_fam_income_dif_80 | Change in log of average family income 1990-1980
