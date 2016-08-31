@@ -1,10 +1,12 @@
 This package constitutes an interactive R problem set based on the RTutor package (https://github.com/skranz/RTutor). 
 
 In the paper "Who Benefits from Environmental Regulation?
-Evidence from the Clean Air Act Amendments", written by Antonio Bento, Matthew Freedman and Corey Long (2014), the authors explore the distribution of the benefits induced by 1990 Clean Air Act Amendments (CAAA). Using geographically disaggregated data and exploiting an
-instrumental variable strategy they find that, contrary to the conventional opinion, the benefits of the CAAA were progressive. In this problem set you will be guided through their main findings. Besides, you will gain knowledge about R and economic methods.
+Evidence from the Clean Air Act Amendments", written by written by Antonio Bento, Matthew Freedman and Corey Long (2014). Using geographically disaggregated data and exploiting an
+instrumental variable strategy the authors explore the distribution of the benefits induced by 1990 Clean Air Act Amendments (CAAA). Thereby they find that, contrary to the conventional opinion, the benefits of CAAA were progressive.
 
-The paper can be found under the link http://www.mitpressjournals.org/doi/abs/10.1162/REST_a_00493#.VxTTZlTp3kW
+
+Their main finding is that adaption costs are significant and account for up to 14 percent of the winning bid. In this problem set you will be guided through their main findings.  Besides, you will gain knowledge about R and 
+economic methods. 
 
 ## 1. Installation
 

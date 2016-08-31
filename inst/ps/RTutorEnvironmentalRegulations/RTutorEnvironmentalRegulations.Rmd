@@ -11,22 +11,22 @@ check.problem.set('RTutorEnvironmentalRegulations', ps.dir, ps.file, user.name=u
 # Run the Addin 'Check Problemset' to save and check your solution
 ```
 
-# Who Benefits from Environmental Regulations
+# Who Benefits from Environmental Regulations?
 
 
-Welcome to this problem set which is part of my master thesis at the University of Ulm. In this problem set we want to discuss how environmental policy affects different groups of society. Particularly we want to examine who benefits from an improvement in the air quality which is caused by the regulations of the Clean Air Act Amendments in 1990 (CAAA). 
-There is a corresponding empirical analysis in the article <a href="http://www.mitpressjournals.org/doi/abs/10.1162/REST_a_00493#.VxTTZlTp3kW" target = "_blank"> "Who Benefits from Environmental Regulation?
+Welcome to this problem set which is part of my master thesis at the University of Ulm. In this problem set we want to discuss how environmental policy affects different groups of society. Particularly, we want to examine who benefits from an improvement in the air quality which is a direct consequence of the Clean Air Act Amendments in 1990 (CAAA). 
+There is a corresponding empirical analysis in the article <a href="http://www.mitpressjournals.org/doi/abs/10.1162/REST_a_00493#.V72bRilkiM_" target = "_blank"> "Who Benefits from Environmental Regulation?
 Evidence from the Clean Air Act Amendments"</a>, written by Antonio Bento, Matthew Freedman and Corey Long to which we refer by BFL (2014) during this problem set. This article was published in 2014 in the Review of Economics and Statistics.
-The corresponding StataCode and the Data Set can be found at the <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/27299" target = "_blank"> Review of Economics and Statistics Dataverse Homepage</a>.
+The corresponding StataCode and the Data Set can be found on the <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/27299" target = "_blank"> Review of Economics and Statistics Dataverse Homepage</a>.
 
 
 ## Exercise Content
 
-The traditional literature usually claims that environmental policies are regressive (Banzahf (2011), Fullerton (2011), Bento (2013)). This is in part because the costs of these policies tend to be higher for lower income households. They spend a higher share of their income for energy goods and often are employed in energy-related industries. In addition to that households with a higher income are more likely to be homeowners and therefore particularly benefit from an increase in the house values which is caused by an improvement in the air quality.
+The traditional literature usually claims that environmental policies are regressive (Banzahf (2011), Fullerton (2011), Bento (2013)). This is in part because the costs of these policies tend to be higher for lower income households. They spend a higher share of their income for energy goods and often are employed in energy-related industries. In addition to that, households with a higher income are more likely to be homeowners and therefore particularly benefit from an increase in the house values which is caused by an improvement in the air quality.
 Despite these arguments the article "Who Benefits from Environmental Regulation? Evidence from the Clean Air Act Amendments" aims at showing that the benefits of the CAAA in 1990 are progressive.
-Therefore BFL (2014) use geographically disaggregated data and exploit an instrumental variable approach. 
+BFL (2014) use geographically disaggregated data and exploit an instrumental variable approach. 
 
-This problem set will lead you through this article and reproduce its results in R. In addition to that we will question the findings of BFL (2014). Particularly we will discuss their assumption that the obtained results for a special subgroup of the population can be applied to the whole population.
+This problem set will lead you through this article and reproduce its results in R. In addition to that we will question the findings of BFL (2014). Particularly, we will discuss their assumption that the obtained results for a special subgroup of the population can be applied to the whole population.
 
 Therefore this problem set is built as follows:
 
@@ -61,7 +61,7 @@ Therefore this problem set is built as follows:
   
   11. Appendix
   
-You do not need to solve the exercises in the given order but it is recommended to do so because in this way it is easier for you to understand the economic story of this problem set. Moreover later exercises expect earlier received knowledge from you. Within one tab you have to solve the tasks in the given order apart from the ones that are excluded explicitly with a note (like all quizzes that you will find and some additional code blocks).
+You do not need to solve the exercises in the given order but it is recommended to do so because in this way it is easier for you to understand the economic story of this problem set. Moreover, later exercises build upon earlier received knowledge. Within one tab you have to solve the tasks in the given order apart from the ones that are excluded explicitly with a note (like all quizzes that you will find and some additional code blocks).
   
   
 ## Exercise 1 -- Overview 
@@ -91,15 +91,15 @@ The attainment status for each monitor is assigned by the so called EPA's rule: 
 (BFL(2014))
 
 These regulations of the 1990 CAAA affect the behavior of the local regulators in a considerable way. In counties that include several monitors local regulators focus on reducing the PM$_{10}$ concentration around monitors that are in danger to exceed the thresholds because, as described above, these monitors put the whole county at risk to be named as non-attainment county.
-The EPA, the South Coast Air Quality Management District and other researches like Auffhammer et al. (2009) confirm that the regulators focus on areas around non-attainment monitors. Applying more aggressive action to them, the local regulators want to minimize the future expected costs for the whole county. In doing so the they try to push through the air quality standards by policies that lead to geographically uneven reductions in PM$_{10}$. For example they pass additional inspections especially in the "dirty" areas. The geographical variance of the local regulators' behavior within their counties and the consequences will be illustrated in `Exercise 2`. Afterwards we exploit this geographical heterogeneity to estimate the causal effects of a 1990 CAAA-induced PM$_{10}$ reduction on the different groups of society.
+The EPA, the South Coast Air Quality Management District and other researches like Auffhammer et al. (2009) confirm that the regulators focus on areas around non-attainment monitors. Applying more aggressive action to them, the local regulators want to minimize the future expected costs for the whole county. In doing so they try to push through the air quality standards by policies that lead to geographically uneven reductions in PM$_{10}$. For example they pass additional inspections especially in the "dirty" areas. The geographical variance of the local regulators' behavior within their counties and the consequences will be illustrated in `Exercise 2`. Afterwards we exploit this geographical heterogeneity to estimate the causal effects of a 1990 CAAA-induced PM$_{10}$ reduction on the different groups of society.
 (BFL (2014))
 
-If you are interested in additional information about the regulations of the Clean Air Act, click <a href="http://www.epw.senate.gov/envlaws/cleanair.pdf" target = "_blank"> here</a>.
+If you are interested in additional information about the Clean Air Act (1970) and its amendments click <a href="http://www.epw.senate.gov/envlaws/cleanair.pdf" target = "_blank"> here</a>.
 
 
 ## Exercise 1.2 -- Overview of the data set
 
-Now in order to get an entry into this analysis we want to take a look at the observations which we will use to estimate the effects of a policy-induced reduction in pollution on different groups of society. In particular we regard different areas and their respective characteristics. The corresponding data set is named as `BFL.dta`. So the first step should be to read in this data set. As it is in Stata form we have to use the command `read.dta()` out of the `foreign` package. For more information about this function take a look at the info box below.
+Now in order to establish a starting point for the following analysis we want to take a look at the observations which we will use to estimate the effects of a policy-induced reduction in pollution on different groups of society. In particular we regard different areas and their respective characteristics. The corresponding data set is named as `BFL.dta`. So the first step should be to read in this data set. As it is in Stata form we have to use the command `read.dta()` out of the `foreign` package. For more information about this function take a look at the info box below.
 
 info("read.dta()") # Run this line (Strg-Enter) to show info
 
@@ -121,7 +121,7 @@ head(dat)
 ```
 
 Notice that if you move your mouse over the header of a column, you will get additional information describing what this column stands for.
-In general you always have the possibility to read up these descriptions in this problem set. You just have to press `data`, this will get you to the `Data Explorer` section. If you press `Description` in the `Data Explorer`, you will get more detailed information about all variables in the data set. 
+In general you always have the possibility to look up these descriptions in this problem set. You just have to press `data`, this will get you to the `Data Explorer` section. If you press `Description` in the `Data Explorer`, you will get more detailed information about all variables in the data set. 
 
 Regarding these examples from the data set you see that each row represents one specific area.
 These areas were selected because they are located within a radius of twenty miles around a monitor, which fulfills special requirements. These requirements will be explained later.
@@ -132,9 +132,9 @@ The different columns include values for the characteristics of a corresponding 
 
 ### Air quality data
 
-As explained before, the aim of this problem set is to find the effect of PM$_{10}$ reductions induced by the 1990 CAAA on different groups of society. So the variables of major importance are the variables representing the PM$_{10}$ concentration. In the data set these variables are named as `pol_90` and `pol_dif`.
-`pol_90` is the average PM$_{10}$ concentration in the year 1990 and `pol_dif` the PM$_{10}$ reduction between 1990 and 2000.
-These values are adapted from the <a href="https://www.epa.gov/aqs" target = "_blank">Air Quality Standards database</a>.
+As explained before, the aim of this problem set is to find the effect of PM$_{10}$ reductions induced by the 1990 CAAA on different groups of society. So the variables of major importance are the variables representing the PM$_{10}$ concentrations. In the data set these variables are named as `pol_90` and `pol_dif`.
+`pol_90` is the average PM$_{10}$ concentration in the year 1990 and `pol_dif` the PM$_{10}$ change between 1990 and 2000.
+These values are adapted from the <a href="https://www.epa.gov/aqs" target = "_blank">Air Quality Standards database (2016)</a>.
 For each monitor this database includes the average PM$_{10}$ concentration of one year, the coordinates of the location plus several more measures.
 We adopt the procedure of BFL (2014) and consider only those monitors of the database that fulfill the requirements of timing and reliability. That's why there are counties that can't be associated to a monitor and therefore aren't considered in our data set.
 A detailed description of these requirements can be read up in the info box below.
@@ -142,8 +142,8 @@ A detailed description of these requirements can be read up in the info box belo
 info("Requirements of timing and reliability") # Run this line (Strg-Enter) to show info
 
 Because of these requirements the sample of monitors is decimated from 3080 out of the database to 375 in only 230 counties. But these counties have a relatively high population density and so contain one-third of the total U.S. population (BFL (2014). 
-Despite this decimation in our sample, BFL (2014) claim that the observed changes in pollution are still consistent with other works, that rely on remarkable larger samples.
-In the next chunk we want to show that this is really the case. To compute a comparable value for the decline in the average PM$_{10}$ concentration we have to divide the average difference in the pollution between 1990 and 2000 through the average pollution in 1990. The corresponding variables are `pol_dif` and `pol_90`. Thereby we have to consider all areas stored in `dat`.
+Despite this decimation in our sample, BFL (2014) claim that the observed changes in pollution are still consistent with other works, which rely on remarkable larger samples.
+In the next task we want to show that this is really the case. To compute a comparable value for the decline in the average PM$_{10}$ concentration we have to divide the average difference in the pollution between 1990 and 2000 through the average pollution in 1990. The corresponding variables are `pol_dif` and `pol_90`. Thereby we have to consider all areas stored in `dat`.
 
 **Task:** Compute the decline in the average PM$_{10}$ concentration, as described above. Use the `mean()` function in R to compute the average of a variable. If you don't know how to apply this function, click the `hint` button.
 ```{r "1_2__6"}
@@ -153,12 +153,12 @@ In the next chunk we want to show that this is really the case. To compute a com
 
 #! addon__quiz__Change in pollution
 
-The value of approximately (-0.21) indicates that the average concentrations of PM$_{10}$ declined by 21 % in the 1990s. This is consistent with the findings of Aufhammer et al. (2009), which is an example for a work that relies on a much larger sample of monitors. Therefore we can apply our decimated sample with a clear conscience. 
+The value of approximately (-0.21) indicates that the average concentrations of PM$_{10}$ declined by 21 % in the 1990s. This is consistent with the findings of Aufhammer et al. (2009), which is an example for a work that relies on a much larger sample of monitors. Therefore we can apply our decimated sample without a loss of conclusiveness. 
 
 ### The characteristics of the areas
 
 As you already could see in this overview, our data set also includes a lot of measured demographic and housing characteristics for every area. 
-They are taken from the <a href="http://www.geolytics.com/USCensus,Neighborhood-Change-Database-1970-2000,Products.asp" target = "_blank"> GeoLytics Neighborhood Change Database</a>.
+They are taken from the <a href="http://www.geolytics.com/USCensus,Neighborhood-Change-Database-1970-2000,Products.asp" target = "_blank"> GeoLytics Neighborhood Change Database (2010)</a>.
 Like it was the case with the air quality, most of the these characteristics are represented by two variables. These include on the one hand the static value from 1990 and on the other hand the difference between the values in 1990 and 2000. 
 For example the variable that represents the median family income in 1990 is `median_family_income_90` while `median_family_income_dif` represents the difference in the median family income between 1990 and 2000. 
 As a reminder, if you are interested in a more detailed description of all variables in the data set, press `Description` in the `Data Explorer`.
@@ -169,7 +169,7 @@ In addition to that we use again the `head()` function to consider only the firs
 
 info("select()") # Run this line (Strg-Enter) to show info
 
-**Task:** Take a look at the two variables representing the median family income in an area: `median_family_income_90` and `median_family_income_dif`. Consider only the first areas stored in `dat`. To do this use `head()`. The required command is already entered. You just have to press `check`. Note that the corresponding county code also is considered.
+**Task:** Take a look at the two variables representing the median family income in an area: `median_family_income_90` and `median_family_income_dif`. Consider only the first areas stored in `dat`. To do this use `head()`. The required command is already entered. You just have to press `check`. Note that the corresponding county code of an area also is considered.
 ```{r "1_2__8"}
 head(select(dat, county_code, median_family_income_90, median_family_income_dif))
 ```
@@ -204,11 +204,11 @@ The command `distinct()` from `dplyr`, which is wrapped around the `select()` co
 
 ## Exercise 2 -- Factors causing specific trends in the data set
 
-So far we know how the data set is built and which variables it includes. In this chapter we try to detect specific trends in these variables which we can exploit in the further course of this problem set to examine the causal effects of PM$_{10}$ reductions on different groups of society.
+So far we know how the data set is built and which variables it includes. In this chapter we try to identify specific trends in these variables which we can exploit in the further course of this problem set to examine the causal effects of PM$_{10}$ reductions on different groups of society.
 When we discussed the development of the CAAA in `Exercise 1` we have already mentioned two potential factors which could cause such trends.
 The first one is the distance of an area to the closest monitor and the second one is the attainment status. 
 
-Note that in this chapter we discuss the features of the data set. That's why the statements we make here only refer to the observations included in the data and don't represent causal effects.
+Note that in this chapter we discuss the features of the data set. That's why the statements we make here only refer to the observations from the data and don't represent causal effects.
 
 ### The distance of an area to the next monitor
 
@@ -274,13 +274,13 @@ dat %>%
 
 #! addon__quiz__Summarise
 
-When we compare these values for the different groups of areas, we see that with an increasing value for `ring` the median income, the median house price, the median rent and the median share of the owner-occupied houses increase. At the same time the median unemployment rate decreases.
+When we compare these values for the different groups of areas, we see that with an increasing value for `ring` the median income, the median house price, the median rent, and the median share of the owner-occupied houses increase. At the same time the median unemployment rate decreases.
 As we learned in `Exercise 1` a small value for `ring` can be equated with a small distance of an area to the next monitor. So we can state that in our sample the population in areas located near a monitor seems to be poorer than the population in areas located further away.
-Therefore our presumption, that there is a systematic variation across space for these socio-economic variables in our data set, is confirmed. 
+Therefore our presumption that there is a systematic variation across space for these socio-economic variables in our data set is confirmed. 
 
 In the next step we still have to consider the variables that are associated with the air quality.
 According to the plot above there doesn't seem to be a remarkable correlation between the reduction in pollution and the distance to the next monitor. 
-To be sure we should have a closer look at this relationship too. Therefore we use the variable representing the pollution in 1990 and the variable representing the reduction in pollution between 1990 and 2000. Using these variables we compute the respective median for each group of areas. Just like we did it before, when we examined the socio-economic variables.
+To be sure we should have a closer look at this relationship, too. Therefore we use the variable representing the pollution in 1990 and the variable representing the reduction in pollution between 1990 and 2000. Using these variables we compute the respective median for each group of areas. Just like we did it before when we examined the socio-economic variables.
 
 **Task:** Use a combination of the `summarise()` and `group_by()` commands to calculate the median of `pol_90` and `pol_dif` for each group of areas. The respective results should be stored in the variables `median_pol_90` and `median_pol_dif`.
 To get the results delete the #'s, fill in the gaps and then press the `check` button.
@@ -307,9 +307,9 @@ To do this we have to cluster the areas into the following attainment groups.
 - County in-attainment(`InAttainment`).
 In this case the pollution is quite low in an area. All monitors in the whole county of the regarded area fulfill the limit value for the PM$_{10}$ concentration.
 - County non-attainment (`C_NonAttainment`).
-In this case the pollution is a bit higher. There is at least one monitor in the county of the regarded area which succeeds the limit values for the PM$_{10}$ concentration. 
+In this case the pollution is a bit higher. There is at least one monitor in the county of the regarded area which exceeds the limit values for the PM$_{10}$ concentration. 
 - Monitor non-attainment (`NonAttainment`).
-In this case the pollution is quite high. It's decisive that the monitor next to the regarded area succeeds the standards.
+In this case the pollution is quite high. It's required that the monitor closest to the regarded area does not comply with the standards.
 
 (BFL (2014))
 
@@ -327,7 +327,7 @@ After they had done this, they calculated the median PM$_{10}$ concentration for
 
 Before we examine if the reduction in pollution is correlated with the attainment status, let's see if you get along with this new data set and the attainment designations.
 
-**Task:** Show every possible combination of the two variables `cnty_stat` and `mntr_stat`. That means show each possible attainment status of an area which we explained above.
+**Task:** Press `check` to show every possible combination of the two variables `cnty_stat` and `mntr_stat`. That means show each possible attainment status of an area which we explained above.
 To do this press `check`.
 Remember: the `distinct()` command ensures that only unique entries of a data frame are printed out. 
 For a detailed description of this `select()` command, have a look at the corresponding info box in `Exercise 1`.
@@ -337,7 +337,7 @@ distinct(select(dat1, cnty_stat, mntr_stat, attain))
 
 #! addon__quiz__Attainment status
 
-Now let's illustrate the PM$_{10}$ reduction within those three different groups of areas between 1990 and 2000. Therefore we use the `ggplot()` command again. If you can't remember this command look at the beginning of this chapter. There you can find a corresponding info box.
+Now let's illustrate the PM$_{10}$ reduction within those three different groups of areas between 1990 and 2000. Therefore we use the `ggplot()` command again. If you can't remember this command, look at the beginning of this chapter. There you can find a corresponding info box.
 
 **Task:** Plot the median PM$_{10}$ concentration on the y-axis and the year on the x-axis.
 In the data set `pol_dif.dta` the variable representing the median concentration of PM$_{10}$ is called `pm`. The years are stored in `year`. You should consider the different groups of attainment. The respective affiliation is presented by the variable `attain`.
@@ -380,7 +380,7 @@ To run the regression we have to load the data set `BFL.dta` again.
 
 ```
 
-**Task:** Run a regression using `median_house_value_90` as dependent variable and `pol_90` as independent variable. Store the results in `reg`. Since this is your first performance running a regression you just have to remove # and fill in the gaps before you press `check`. 
+**Task:** Run a regression using `median_house_value_90` as dependent variable and `pol_90` as independent variable. Store the results in `reg`. Since this is your first regression you just have to remove # and fill in the gaps before you press `check`. 
 If you can't remember the structure of the command, look at the info box above.
 ```{r "3__3"}
 # reg = felm(... ~ ..., data=dat)
@@ -397,7 +397,7 @@ To show summary statistics of regressions we will make use of the function `star
 
 Let's interpret our first regression results: 
 
-By the definition of `median_house_value_90`, which is the median house price in 1990 in one area and `pol_90`, which is the  the PM$_{10}$ concentration in 1990, we know that the PM$_{10}$ concentration is measured in $\mu g/m^{3}$ and the house prices in in U.S. dollars. So the regression tells us if the concentration of PM$_{10}$ increases by one $\mu g/m^{3}$, the house 
+By the definition of `median_house_value_90`, which is the median house price in 1990 in one area and `pol_90`, which is the  the PM$_{10}$ concentration in 1990, we know that the PM$_{10}$ concentration is measured in $\mu g/m^{3}$ and the house prices in U.S. dollars. So the regression tells us if the concentration of PM$_{10}$ increases by one $\mu g/m^{3}$, the house 
 prices will increase by about 175.20 dollars. 
 In contrast to these results, you actually would expect a negative sign for the coefficient of `pol_90`, meaning that a better air quality generally would cause higher house prices.
 As you may have noticed `stargazer()` prints in addition to the results the p-values of the regression coefficients. Furthermore it prints one star if the result is significant at the 5 % level, two stars if it is significant at the 1 % level and three stars if it is significant at the 0.1 % level. Most econometricians say that a result is significant if its significance level is below 5 %, meaning that the corresponding p-value is smaller than 0.5. 
@@ -406,11 +406,11 @@ In the end this means that we should revise our OLS approach and check if it rea
 
 To justify the use of such a linear regression model for the purposes of inference or prediction, there are five principal assumptions:
 
-**A1**: The dependent variable can be written as a linear function of a specific set of independent variables, plus an disturbance term.  
-**A2**: The conditional expected value of the disturbance term is zero, no matter which values of the independent variable we observe ($E[\varepsilon_i] = 0$).  
+**A1**: The dependent variable can be written as a linear function of a specific set of independent variables, plus a disturbance term.  
+**A2**: The conditional expectation value of the disturbance term is zero, no matter which values of the independent variable we observe ($E[\varepsilon_i] = 0$).  
 **A3**: Disturbances have uniform variance and are uncorrelated ($Var(\varepsilon_i) = \sigma^2 \; \forall i$ and $Cov(\varepsilon_i , \varepsilon_j) = 0 \; \forall i \neq j$).  
 **A4**: Observations on independent variables can be considered fixed in repeated samples.   
-**A5**: No exact linear relationship between independent variables and more observations than independent variables.  
+**A5**: There is no exact linear relationship between independent variables and there are more observations than independent variables.  
 
 (Kennedy (2008))
 
@@ -444,7 +444,7 @@ The results of these two regressions differ a lot.
 The most important difference for us is that our coefficient of interest is negative now. So using the first-difference approach, the results fulfill our expectations because they indicate a negative relationship between the pollution and the house prices.
 Furthermore the p-value for the coefficient of interest decreases from 0.873 in `reg` to 0.546 in `reg1`. Thus it is still not significant, but comes closer to the point. 
 
-As mentioned above, here we use the difference between the logarithmized median house prices in 1990 and 2000. Therefore we can interpret the effect on changes in house prices in a more compressed way. Running a regression where the dependent variable is logarithmized and the independent isn't you interpret $\beta_1$ as follows:
+As mentioned above, here we use the difference between the logarithmized median house prices in 1990 and 2000. Therefore we can interpret the effect on changes in house prices in a more compressed way. Running a regression where the dependent variable is logarithmized and the independent isn't one interprets $\beta_1$ as follows:
 A change in the independent variable of one unit leads to a change in the dependent variable of 100*$\beta_1$ per cent.
 According to a value of (-0.00058) for `pol_dif` an increase in the PM$_{10}$ concentration by one $\mu g/m^{3}$ leads to a decrease in the house prices by 0.058 %.
 
@@ -462,11 +462,11 @@ info("Control variables") # Run this line (Strg-Enter) to show info
 In our case these control variables are all housing and neighborhood characteristics that could be observed for the different areas and therefore are included in the data set `BFL.dta`.
 Remember that if you are interested in more detailed information about these variables, press `Description` in the `Data Explorer`. 
 Despite these additional information there is one special control variable that we should explain separately, namely the variable `factor`.
-If you assume that house price trends across regions are correlated with patterns of improvements in the air quality, it could bias our estimates for the effects of a PM$_{10}$ reduction on house prices. To address this issue, according to BFL (2014), we include the local home price index of Freddie Mac, usually known as CMHPI, as a control variable. If you are interested in more information about this index, you should have a look at Williams et al. (1995). And if you are interested in specific measures of this index, click <a href="http://www.freddiemac.com/finance/house_price_index.html" target = "_blank">here</a>.
+If you assume that house price trends across regions are correlated with patterns of improvements in the air quality, it could bias our estimates for the effects of a PM$_{10}$ reduction on house prices. To address this issue, according to BFL (2014), we include the local home price index of Freddie Mac, usually known as CMHPI, as a control variable. If you are interested in more information about this index, you should have a look at Stephens et al. (1995). And if you are interested in specific measures of this index, click <a href="http://www.freddiemac.com/finance/house_price_index.html" target = "_blank">here</a>.
 We take this index into account by including the variable `factor` in the vector of controls. Thus our estimates reflect the effects of PM$_{10}$ reductions on house price changes, beyond those that would be expected given regional price trends.
 
 As we have to include one additional control variable for each time-variant factor this approach only controls for observable characteristics of areas.
-In the following exercise you can have a look at the whole bunch of these control variables.
+In the following exercise you can have a look at all employed control variables.
 Note that we have to apply the first-difference approach to all of them too.
 
 **Task:** To define a vector which is called `my.controls` and includes all control variables, press the `check` button. This vector is stored in another file which is linked with this problem set. By doing this we don't have to define it again in the further course of this problem set.
@@ -476,16 +476,16 @@ my.controls = c("total_housing_units_dif", "share_units_occupied_dif", "share_oc
 
 As you can see we have to include really a lot of control variables in our regression.
 So the `felm()` command to run a regression becomes quite extensive. 
-That's why we first want to create a regression formula which includes all relevant variables and store it in a variable which then can be delivered to `felm()`.
+That's why we first want to create a regression formula which includes all relevant variables and store it in a variable which then can be passed to `felm()`.
 
-**Task:** To merge all control variables with the core part of our regression and to create an appropriate regression formula which can delivered to `felm()`, press `check`.
+**Task:** To merge all control variables with the core part of our regression and to create an appropriate regression formula which can passed to `felm()`, press `check`.
 ```{r "3__8"}
 
 ```
 
-info("A detailed descritption of the procedure creating the regression formula") # Run this line (Strg-Enter) to show info
+info("A detailed description of the procedure creating the regression formula") # Run this line (Strg-Enter) to show info
 
-**Task:** Perform a regression as described above. Instead of delivering one dependent variable and several independent variables you just have to deliver the variable `form`. 
+**Task:** Perform a regression as described above. Instead of explicitly referring to one dependent variable and several independent variables you just have to pass the variable `form` to the `felm()` command. 
 Store the result in `reg2`. If you need help you can press the `hint` button.
 ```{r "3__9"}
 # Enter your command here
@@ -518,7 +518,7 @@ In general it is said that heteroskedasticity occurs when the variance of the un
 This could apply here because the characteristics of an area are related to the characteristics of other areas, especially if they are located in the same county.
 Heteroskedasticity causes biased and inconsistent standard errors and therefore violates A2 of our principal assumptions which justify the use of a linear regression model. For a more detailed description of heteroskedasticity have a look at Williams (2015).
 
-To solve this problem we apply clustered standard errors. In our case it makes sense to cluster the areas by their affiliation to a county. The appropriate grouping variable in our data frame `BFL.dta `is called `fips2`. 
+To solve this problem we apply clustered standard errors. In our case it makes sense to cluster the areas by their affiliation to a county. The appropriate grouping variable in our data frame `BFL.dta ` is called `fips2`. 
 This variable represents the FIPS county code which uniquely identifies counties and county-similar areas in the USA (United States Census Bureau (2010)).
 This means areas with the same FIPS code belong to the same county or county-similar area.
 
@@ -530,14 +530,14 @@ This means areas with the same FIPS code belong to the same county or county-sim
 
 You can see that the first numbers of the FIPS code represent the state code and the last three numbers the code for the county where the area is located.
 So using the variable `fips2` we can identify all counties and states that include an area from our data set.
-You can read up all FIPS codes and the associated states and counties <a href="https://www.epa.gov/enviro/state-fips-code-listing" target = "_blank">here</a>.
+You can look up all FIPS codes and the associated states and counties in the <a href="https://www.epa.gov/enviro/state-fips-code-listing" target = "_blank">State FIPS Code Listing (2016)</a>.
 
 To illustrate the information we get from the FIPS code we first filter all areas with a specific FIPS code from our data set. Afterwards we take these specific FIPS codes and tag both, the corresponding state and the corresponding county in Google Maps.
 To select areas from the main data set we can use the `filter()` function of the `dplyr` package. If you are not familiar with it, take a look at the info box below. 
 
 info("filter()") # Run this line (Strg-Enter) to show info
 
-**Task:** Use `filter()` to generate a data set that only contains the areas with the FIPS code `1069`, `6073` or `36031`. Because we  want to filter areas with different FIPS codes we have to use `|` between the different conditions. As this is the first time we apply the filter command you just have to uncomment the code and fill in the gaps with the different FIPS codes. Then you can press the `check` button.
+**Task:** Use `filter()` to generate a data set that only contains the areas with the FIPS code `1069`, `6073` or `36031`. Because we want to filter areas with different FIPS codes we have to use `|` between the different conditions. As this is the first time we apply the filter command you just have to uncomment the code and fill in the gaps with the different FIPS codes. Then you can press the `check` button.
 ```{r "3__13"}
 # filter(dat, fips2 == ... | fips2 == ... | fips2 == ...)
 
@@ -546,9 +546,9 @@ info("filter()") # Run this line (Strg-Enter) to show info
 #! addon__quiz__Fips Code
 
 
-**Task:** This exercise is optional. If you are interested in regarding the corresponding states and the corresponding counties which are represented by the FIPS codes from above in Google Maps, press `check`. Otherwise you can directly go to the next exercise. Note that you can click on an icon on the map to get information about the corresponding state and county. The number in the brackets is the FIPS code.
+**Task:** This exercise is optional. If you are interested in viewing the corresponding states and the corresponding counties which are represented by the FIPS codes from above in Google Maps, press `check`. Otherwise you can directly go to the next exercise. Note that you can click on an icon on the map to get information about the corresponding state and county. The number in the brackets is the FIPS code.
 The red marker stands for counties that are in danger to succeed the standards, the green markers for counties where the standards are fulfilled.
-These information come from the <a href="https://www3.epa.gov/airquality/greenbook/ancl.html" target = "_blank"> Greenbook of the United States Environmental Protection Agency</a>.
+This information comes from the <a href="https://www3.epa.gov/airquality/greenbook/ancl.html" target = "_blank"> Green Book of the United States Environmental Protection Agency (2016)</a>.
 ```{r "3__14",results='asis', output='htmlwidget', widget='leaflet', optional=TRUE}
 area.map()
 ```
@@ -575,7 +575,7 @@ If you do not remember how to do this, just take a look at previous exercises or
 
 ```
 
-As we already determined, `reg2` is clearly preferred to `reg` and `reg1`. So here it is sufficient to compare the summaries of `reg2` and `reg3` in order to examine if the usage of cluster standard errors improves our model.
+As we already determined, `reg2` is clearly preferred over `reg` and `reg1`. So here it is sufficient to compare the summaries of `reg2` and `reg3` in order to examine if the usage of cluster standard errors improves our model.
 
 **Task:** Print a summary of the regressions `reg2` and `reg3`. Use the `reg.summary()` command.
 ```{r "3__18",results='asis'}
@@ -613,7 +613,7 @@ $$X_i$$ is a vector that includes housing and neighborhood characteristics of ar
 Furthermore we found that because certain areas have similar characteristics we have to cluster the standard errors at the county level.
 The problem here is that despite the first-difference approach and the bunch of control variables there probably are still factors which are correlated with a PM$_{10}$ reduction and also independently affect the house prices, but aren't included in our model yet. If this was the case, there would be endogeneity and A2 of our principal assumptions wouldn't be fulfilled (Kennedy (2008)).
 One approach that addresses this problem is the Instrumental Variable regression.
-In the following exercises we will present this approach as well and will contrast it with the OLS regression from this chapter.
+In the following exercises we will consider this approach as well and will contrast it with the OLS regression from this chapter.
 
 
 ## Exercise 4 -- A further approach: The IV regression
@@ -642,9 +642,9 @@ Because not all of the monitors have reliable data for all years the denominator
 Regarding the two conditions the instruments have to fulfill, we first have to examine if the non-attainment status really affects the reduction in PM$_{10}$. 
 As the figure in `Exercise 2_10` suggests, and as we will show more rigorously in `Exercise 4.2` this condition clearly holds.
 
-In contrast to the first condition, the fulfillment of the second condition can never conclusively be shown. But at least to reduce the doubts, we include a bunch of control variables in our regression model and will run a clutch of robustness checks in `Exercise 6`. In doing so we minimize the unobserved factors in the error term. Thus the probability that the instruments could be correlated with the disturbance decreases. 
+In contrast to the first condition, the fulfillment of the second condition can never conclusively be shown. But at least to reduce the doubts, we include a number of control variables in our regression model and will run robustness checks in `Exercise 6`. In doing so we minimize the unobserved factors in the error term. Thus the probability that the instruments could be correlated with the disturbance decreases. 
 
-So in summary we can assume, that the monitor non-attainment status and the county non-attainment status fulfill both conditions and therefore seem to be appropriate instruments. To what extent these instruments really are capable to deal with the problem of endogeneity and how they affect the results of the estimation will be discussed in the next chapter.
+In summary we can assume, that the monitor non-attainment status and the county non-attainment status fulfill both conditions and therefore seem to be appropriate instruments. To what extent these instruments really are capable to deal with the problem of endogeneity and how they affect the results of the estimation will be discussed in the next chapter.
 In the data set the values for these instruments are stored in `mntr_instr` and `cnty_instr`.
 
 ## Exercise 4.1 -- OLS versus IV
@@ -661,7 +661,7 @@ So let's start with recapitulating what we learned about the OLS approach.
 Remember that in this problem set we want to estimate the effect of changes in PM$_{10}$, induced by the Clean Air Act in 1990, on changes in house prices. 
 The left branch in the graph describes our assumption we made in `Exercise 1`, that the non-attainment designation, which was introduced by the 1990 CAAA, nudges the local regulators and enforces them to target especially areas near dirtier monitors for cleanup. Thereby they create a within-county variation in pollution reductions. So by examining the effect of the actually observed pollution reductions on changes in house prices, we want to estimate the effects of the regulations, introduced by the 1990 CAAA.
 
-Of course you can imagine that there are considerably more factors which have an effect on changes in house prices. As long as they don't affect the changes in the pollution as well they don't skew our results and don't have to be included in our model.
+Of course you can imagine that there are considerably more factors which have an effect on changes in house prices. As long as they don't affect the changes in the pollution as well they don't skew our results and do not have to be included in our model.
 But this also means that you have to include, if possible, all factors that influence changes in pollution and independently affect the changes in the house prices in your model.
 To consider at least those factors that are time-invariant or observable our OLS approach includes a bunch of controls and applies the first difference approach.
 However, as explained several times so far, it is reasonable to assume that there are also time-variant factors, which are correlated with the PM$_{10}$ concentration and independently affect house prices, but can't be observed and therefore are not taken into account by OLS.
@@ -675,7 +675,7 @@ Thus the expansion in the infrastructure leads to both, an increase in the PM$_{
 
 Even though OLS doesn't consider the unobservable and time-variant factors, like the enlargement in the infrastructure, the variation in the observed values for the PM$_{10}$ reduction and for the changes in house prices is driven by these exogenous infrastructure changes.
 Thus the estimated coefficient of `pol_dif` in the OLS regression also captures the effect of exogenous infrastructure changes on house prices, and not only the effect of the PM$_{10}$ reduction due to regulatory measures. One says it is biased. 
-According to Bound, Jaeger and Baker (1993) you can predict the sign of the bias caused by an omitted variable. It depends on the correlation between the omitted variable and the regressor and on the relationship between the omitted variable and the dependent variable of the regression model.
+According to Bound, Jaeger and Baker (1990) you can predict the sign of the bias caused by an omitted variable. It depends on the correlation between the omitted variable and the regressor and on the relationship between the omitted variable and the dependent variable of the regression model.
 This means that on the one hand we have to analyse the correlation between the PM$_{10}$ concentration in an area and an enlargement in the infrastructure. And on the other hand we have to think about the relationship between an enlargement in the infrastructure and the house prices in an area. 
 The correlation between the PM$_{10}$ concentration and an enlargement in the infrastructure was already explained and we can state that it's positive.
 Following BFL (2014) we expect the relationship between an enlargement in the infrastructure and the house prices to be positive. So in the end we can make the assumption that our endogenous variable `pol_dif` is biased upwards.
@@ -690,7 +690,7 @@ In contrast to OLS the IV approach tries to exclude the variation in the variabl
 
 The special thing about this approach is that you first regress the values of the endogenous variable on the detected instruments and then in the second stage, when you estimate the crucial relationship, you use only the variance of the endogenous variable that is explained by the instruments. In our case this means that we first regress the values of `pol_dif` on the non-attainment status and then use the predicted values of this first regression, instead of the actual observed ones, to estimate the effect of reductions in PM$_{10}$ on changes in house prices. By doing this we consider only the variation in PM$_{10}$ that is caused by the EPA's non-attainment designations and try to exclude the unobserved part of the variance which we assume to be caused by exogenous infrastructure changes. Therefore we aim at getting a coefficient for `pol_dif` which represents only the effect due to regulatory measures. 
 In order to ensure that this works, we have to require that the non-attainment status covers only the effects of the 1990 CAAA on the air quality. This means you assume that the decision-making process of the local regulators to establish an additional highway or a new power plant is independent from the regulations of the Clean Air Act.
-In contrast to BFL (2014) we question this assumption because as we already explained, these exogenous factors have a strong impact on the air quality, wherefore it would be quite conceivable that local regulators decide against an establishment of a new highway if they would endanger the attainment status of their area with it.
+In contrast to BFL (2014) we question this assumption because as already explained, these exogenous factors have a strong impact on the air quality, wherefore it would be quite conceivable that local regulators decide against an establishment of a new highway if they would endanger the attainment status of their area.
 
 Nevertheless it is obvious that there is a problem of endogeneity in our model. Although the IV approach, using the non-attainment status of the county and the monitor as instruments, is not a perfect solution, we assume that its results should represent the effect of PM$_{10}$ reductions induced by the CAAA on changes in house prices better than OLS. That's the case because the IV regression excludes at least the part of the variation in the observed PM$_{10}$ values which is due to exogenous infrastructure changes that are implemented independently from their influence on the attainment status of an area.
 So in the next chapter, when we come back to the main question of this problem set, namely to estimate the effects of reductions in PM$_{10}$ induced by the 1990 CAAA on changes in house prices, we will apply the IV approach instead of OLS. 
@@ -698,12 +698,11 @@ So in the next chapter, when we come back to the main question of this problem s
 
 ## Exercise 4.2 -- Two-Stage Least Squares
 
-In order to illustrate the instrumental variable approach we now run an IV regression by applying the so called Two-Stage Least Squares Method. 
+In order to illustrate the instrumental variable approach we now run an IV regression by applying the so called Two-Stage Least Squares Method. As we did in the chapters before, we need to load the data first here as well.  
 
-**Task:** Read in the data set `BFL.dta` and store it into the variable `dat`.
+**Task:** To load the data set `BFL.dta` and to store it into the variable `dat`, press `edit` and `check` afterwards.
 ```{r "4_2"}
-# Enter your command here
-
+dat = read.dta("BFL.dta")
 ```
 
 
@@ -721,8 +720,8 @@ $$
 
 where $$N_i$$ is equal to the ratio of non-attainment years during the time span 1992 to 1997.
 
-In `Exercise 3` you became acquainted with the procedure to consider the whole bunch of controls in a regression formula.
-To keep the code brief we summarized this procedure and wrote a function that merges all relevant control variables with a corresponding core formula autonomously. As a result it returns a regression formula that can be delivered to the `felm()` command. This function is called `mf()`. If you are interested in a detailed description how this function works and how you can apply it, click on the info button below.
+In `Exercise 3` you became acquainted with the procedure to consider the whole number of controls in a regression formula.
+To keep the code brief we summarized this procedure and wrote a function that merges all relevant control variables with a corresponding core formula autonomously. As a result it returns a regression formula that can be passed to the `felm()` command. This function is called `mf()`. If you are interested in a detailed description how this function works and how you can apply it, click on the info button below.
 
 #! start_note "mf()"
 
@@ -731,7 +730,7 @@ To keep the code brief we summarized this procedure and wrote a function that me
 
 ```
 
-To use this function you have to deliver a string indicating the core part of your formula and a vector that includes all control variables as strings. The core part of your formula should include the dependent variable and the independent variable of interest. 
+To use this function you have to pass a string indicating the core part of your formula and a vector that includes all control variables as strings. The core part of your formula should include the dependent variable and the independent variable of interest. 
 
 **Task:** If you are interested in an example how to apply `mf()`, press `check`.
 ```{r "4_2__3",optional=TRUE}
@@ -744,8 +743,8 @@ For more examples try to solve the following exercises in this problem set. In d
 By applying `mf()` we can create the regression formula which should be used to examine the relationship between the non-attainment status and the PM$_{10}$ reduction.
 Because the control variables in this chapter are the same as in `Exercise 3`, when we ran the OLS regression, we don't have to define them again.
 
-**Task:** Use `mf()` to create a regression formula that includes `pol_dif` as dependent variable and `mntr_instr`, `cnty_instr` plus the control variables as independent variables.  Therefore you have to deliver the core part of the regression as a string and the vector of controls which is called `my.controls` to the function `mf()`. The core part of the regression formula should include the dependent variable and the independent variable of interest.
-As this is the first time we apply the function `mf()` the command is given below. So you just have to press `check` here. Nevertheless you should try to understand the command because we will need it several more times in this problem set. To do this you can also have a look at the info box above.
+**Task:** Use `mf()` to create a regression formula that includes `pol_dif` as dependent variable and `mntr_instr`, `cnty_instr` plus the control variables as independent variables.  Therefore you have to pass the core part of the regression as a string and the vector of controls which is called `my.controls` to the function `mf()`. The core part of the regression formula should include the dependent variable and the independent variable of interest.
+As this is the first time we apply the function `mf()` the command is presented below. So you just have to press `check` here. Nevertheless you should try to understand the command because we will need it several more times in this problem set. To do this you can also have a look at the info box above.
 ```{r "4_2__4"}
 form = mf("pol_dif ~ mntr_instr + cnty_instr", controls=my.controls)
 ```
@@ -769,7 +768,7 @@ If you don't remember how to apply `felm()`, you should go through `Exercise 3` 
 
 #! addon__quiz__Regression output 2
 
-Looking at the results of the first stage, we see that the coefficient of `mntr_instr` is (-11.80) and the coefficient of `cnty_instr` is (-2.59) . 
+Looking at the results of the first stage, we see that the coefficient of `mntr_instr` is (-11.80) and the coefficient of `cnty_instr` is (-2.59). 
 Indicating p-values smaller than 0.001 both coefficients are highly significant. This clearly confirms the choice of our instruments. According to Staiger and Stocker (1997) we don't have to worry about weak instruments if the F-statistic is greater than ten.
 Furthermore the results imply that areas  which are located near non-attainment monitors and which are part of a non-attainment county experience the largest drop in PM$_{10}$. That's consistent with our findings in `Exercise 2` that the areas with the largest pollution in 1990 experience the largest drop in PM$_{10}$.
 
@@ -793,8 +792,8 @@ If you are interested in this function and in a description of how the inclusion
 #! start_note "Weak-Instrument test"
 
 The Weak-Instrument test in R runs an F-Test with the null-hypothesis that the instruments don't have a significant influence on the endogenous variable (Stock and Yogo (2001)).
-The inclusion of a weak instrument which doesn't affect the endogenous variable also leads to a bias and an inconsistency of the estimator. Just like it would be the case with an OLS regression (Bound, Jaeger and Baker (1993)).
-According to Staiger and Stocker (1997) we don't have to worry about weak instruments if the F-statistic is greater than ten, meaning that the instruments are highly significant.
+The inclusion of a weak instrument which doesn't affect the endogenous variable also leads to a bias and an inconsistency of the estimator. Just like it would be the case with an OLS regression (Bound, Jaeger and Baker (1990)).
+According to Staiger and Stocker (1997) we don't have to worry about weak instruments if the F-statistic is greater than ten, i.e. that the instruments are highly significant.
 
 To take a look at the results of this Weak-Instrument test we apply the diagnostics function of the `ivreg()` command. For additional information about `ivreg()` have a look at `Exercise 6`.
 
@@ -901,8 +900,8 @@ Additionally the significance level here improves from 5 % to 1 %.
 These results confirm our expectation that there are omitted factors in our OLS approach and that therefore in `Exercise 3` we underestimate the effect of reductions in PM$_{10}$ on changes in house prices.
 
 In this problem set we ran this Two-Stage Least Squares Method just to clarify the procedure of an IV approach. If you are interested in additional information about this method, we recommend Stock and Watson (2007).
-In R there are special commands that run the two stages of an IV regression autonomously.
-These commands are often more functional and you tend to use them in practice. In the following we will apply them to examine the benefits of PM$_{10}$ reductions induced by the 1990 CAAA for the different groups of society. 
+In R there are special commands that run the two stages of an IV regression together.
+These commands are often more practical. In the following we will apply them to examine the benefits of PM$_{10}$ reductions induced by the 1990 CAAA for the different groups of society. 
 
 ## Exercise 5 -- The effects of the 1990 CAAA-induced air quality improvements
 
@@ -920,20 +919,19 @@ $$
 To examine the effects on different groups of society we exploit the finding from `Exercise 2`, that people living near a monitor seem to be poorer than people living further away.
 We do this by clustering all areas, included in `BFL.dta`, according to their value for `ring`. The exact meaning of `ring` was presented in `Exercise 1`. Using the different partial data sets which are generated by the cluster process, we run several regressions. In doing so each regression examines the effects for a different group of society. 
 Specifically we run each regression twice and consider those two groups of areas which are located between zero and one mile respectively between five and ten miles away from the next monitor.
-Examining these two different groups of areas should represent the trend for all areas quite well.
+Examining these two different groups of areas should yield higher quality results.
 
 To cluster the areas, included in `BFL.dta` we can use the `filter()` function again.
 
-**Task:** Use the command `read.dta()` to read in the data set `BFL.dta`. Store it into the variable `dat`. 
+**Task:** To load the data set `BFL.dta` press `edit` and `check` afterwards. 
 ```{r "5"}
-# Enter your command here
-
+dat = read.dta("BFL.dta")
 ```
 
 **Task:** Filter all areas that have a value of one for `ring` and store them in `mile1`. The same should be done with the areas that have a value of ten for `ring`. Store these results in the variable `mile10`.
 To do this use the `filter()` function, with which we already became acquainted in `Exercise 3`.
 Afterwards have a look at `mile1` and `mile10`.
-The large part of the code is given. You just have to uncomment the code and add the two `filter()` commands. Then you can press the `check` button.
+Most of the code is presented. You just have to uncomment the code and add the two `filter()` commands. Then you can press the `check` button.
 ```{r "5__2"}
 # mile1 = filter(...)
 # mile10 = filter(...)
@@ -946,7 +944,7 @@ The results of this filter process are stored in the partial data sets `mile1.dt
 
 As already announced, in this chapter we want to examine the effects of the instruments, which are represented by the variables `mntr_instr` and `cnty_instr`, on changes in house prices. This means we have to create a regression formula which we can use to examine the relationship between the instruments and `ln_median_house_value_dif`. 
 
-**Task:** Define the regression formula explained above. This means you should include `ln_median_house_value_dif` as dependent variable and `mntr_instr`, `cnty_instr` plus the control variables as independent variables. To do this use the function `mf()`. Store the result into `form`. If you don't know how to do this have a look at `Exercise 4.2`. 
+**Task:** Define the regression formula explained above. This means you should include `ln_median_house_value_dif` as dependent variable and `mntr_instr`, `cnty_instr` plus the control variables as independent variables. To do this use the function `mf()`. Store the result into `form`. If you don't know how to do this have a look at `Exercise 4.2` or press `hint()`. 
 ```{r "5__3"}
 # Enter your command here
 
@@ -956,7 +954,7 @@ Because we include the instruments here as independent variables and examine the
 So we can use the `felm()` command in the same form as we did it in the the previous chapters. 
 
 **Task:** Run a regression that examines the reduced form. Consider only the areas stored in `mile1`.
-To do this you have to deliver the regression formula stored in `form` to the `felm()` command.
+To do this you have to pass the regression formula stored in `form` to the `felm()` command.
 Remember that you should consider clustered standard errors.
 To do this you have to define the cluster variable `fips` first. 
 If you don't know how to do this have a look at `Exercise 3`.
@@ -989,9 +987,9 @@ This is consistent with the statement made in prior chapters that reductions in 
 ### The IV regression
 
 As announced, in this chapter we try to estimate the effects of the 1990 CAAA-induced improvements in the air quality on different groups of society. Therefore we exploit our instrumental variable strategy which we defined in the previous chapters. In contrast to `Exercise 4.2` we don't run the two stages of the IV regression separately but apply a special function in R which compresses this procedure.
-To consider the different groups of society we apply the approach explained above and run two regressions, each with an other data set. These corresponding data sets were already created in this chapter and are stored in `mile1` and `mile10`.
+To consider the different groups of society we apply the approach explained above and run two regressions, each with another data set. These corresponding data sets were already created in this chapter and are stored in `mile1` and `mile10`.
 
-In R there are several commands with the ability to run an IV regression autonomously.
+In R there are several commands with the ability to run an IV regression.
 One of them is the `felm()` command, that you should already know from previous exercises. If you don't know how you apply it to run an IV regression, check the info box below.
 
 info("IV regression with felm()") # Run this line (Strg-Enter) to show info
@@ -999,8 +997,7 @@ info("IV regression with felm()") # Run this line (Strg-Enter) to show info
 Even though we apply `felm()` here to run an IV regression we still have to consider the control variables in our regression formula. So to keep the regression command brief we have to use `mf()` again.
 
 **Task:** Define a regression formula with `ln_median_house_value_dif` as dependent and `pol_dif` plus the control variables as independent variables. Use the function `mf()`.
-Store the formula in the variable `form`.
-If you don't know how to apply `mf()`, have a look at `Exercise 4.2`.
+Store the formula in the variable `form`. Remember that you have already applied `mf()` in this exercise. 
 ```{r "5__8"}
 # Enter your command here
 
@@ -1008,7 +1005,7 @@ If you don't know how to apply `mf()`, have a look at `Exercise 4.2`.
 
 By using `felm()`, all exogenous regressors are automatically included as instruments.
 
-**Task:** Run an IV regression that estimates the effect of PM$_{10}$ reductions on changes in house prices. Consider only the areas included in `mile1`. To do this you have to deliver the regression formula stored in the variable `form`, the instruments `mntr_instr` and `cnty_instr` and the cluster variable `fips`, which you have to define before, to the `felm()` command. As this is the first time we use `felm()` to run an IV regression, you just have to uncomment the code and fill in the gaps. Afterwards press `check`. If you don't know how to fill the gaps, have a look at the info box above or press `hint()`.
+**Task:** Run an IV regression that estimates the effect of PM$_{10}$ reductions on changes in house prices. Consider only the areas included in `mile1`. To do this you have to pass the regression formula stored in the variable `form`, the instruments `mntr_instr` and `cnty_instr` and the cluster variable `fips`, which you have to define before, to the `felm()` command. As this is the first time we use `felm()` to run an IV regression, you just have to uncomment the code and fill in the gaps. Afterwards press `check`. If you don't know how to fill the gaps, have a look at the info box above or press `hint()`.
 ```{r "5__9"}
 #fips = ...
 #ivreg1 = felm(..., iv=list(pol_dif ~ ...),..., ...)
@@ -1043,11 +1040,11 @@ For the areas included in `mile10` and therefore located further away from the n
 This implies that if the distance of an area to the next monitor increases, the influence of the PM$_{10}$ reduction on changes in house prices clearly will become smaller.
 In `Exercise 2` we learned that the smaller the distance of an area to the next monitor, the poorer its population is. Consequently we can say that a PM$_{10}$ reduction benefits the poorer part of the population to a larger extent. 
 Furthermore, because of the reduced form, we know that the PM$_{10}$ reduction especially occurs in areas that are located close to a monitor. 
-So poorer people do not only profit more from a one unit reduction in PM$_{10}$ but also experience a higher PM$_{10}$ reduction.
+So poorer people do not only benefit more from a one unit reduction in PM$_{10}$ but also experience a higher PM$_{10}$ reduction.
 
 info("Possible problems interpreting these results") # Run this line (Strg-Enter) to show info
 
-Now it is important to remind you that these results, indicating progressive benefits, only hold for a specific subgroup of the population. Namely the homeowners.
+Now it is important to remind you that these results, indicating progressive benefits, only hold for a specific subgroup of the population, namely the homeowners.
 In `Exercise 8` we will discuss if you can apply these findings also to the whole population.
 
 But before we do this we have to test if these results here are valid at all. This will be the content of the next two exercises. 
@@ -1061,13 +1058,12 @@ To check if these results are really valid we will deal with some so called robu
 Robustness checks examine how certain the "core" regression coefficient estimates behave when modifying the regression specifications. For example by adding or removing regressors or by adapting the data set. If the coefficients of interest in this chapter are plausible and similar to those in our "core" regression, this is commonly interpreted as evidence of structural validity (Lu and White (2014)).
 Furthermore by showing that the error term does not contain specific factors and therefore reducing the probability that our instruments are correlated with the disturbance, these robustness checks can diminish the doubts that the second condition for our instruments is fulfilled.
 
-Particularly we run three different robustness checks. 
+Particularly, we run three different robustness checks. 
 They involve the consideration of the socio-economic trends in the areas before 1990, an alternative instrument definition and a different set of monitors.
 Because we want to compare the results of these adjusted regressions to the ones of the "core" regression, we consider the same clustered data sets as in `Exercise 5`. This means we use `mile1.dta` and `mile10.dta`. As we learned in `Exercise 5` they include only those areas that are located between zero and one mile respectively between five and ten miles away from the next monitor.
 
 **Task:** Read in the data sets `mile1.dta` and `mile10.dta`.
 Store them into the variables `mile1` and `mile10`.
-The procedure is the same as in the previous exercise.
 ```{r "6"}
 # Enter your command here
 
@@ -1078,7 +1074,7 @@ The procedure is the same as in the previous exercise.
 
 The first robustness check examines to which extent pre-treatment trends in neighborhood
 conditions affect the results.
-If we can detect that the areas which experienced a large reduction in PM$_{10}$ were already on an upward trajectory and you can suppose that these reductions might have occurred even without the CAAA in 1990, then we might attribute further improvements to PM$_{10}$ reductions.
+If we can confirm that the areas which experienced a large reduction in PM$_{10}$ were already on an upward trajectory and you can suppose that these reductions might have occurred even without the CAAA in 1990, then we might attribute further improvements to PM$_{10}$ reductions.
 
 This test is performed by taking additional control variables into account. They represent the differences in an area between 1980 and 1990 with regard to the logarithmized median income, the share of black people, the population density and the number of housing units.
 Because you couldn't observe these trends before 1990 in all areas which are included in the data set you lose almost 20 % of the observations.
@@ -1095,7 +1091,7 @@ To do this you need to remove #, fill in the gaps and then press `check`.
 
 As a clarification: this test again examines the effect of pollution reductions on house prices, just like the "core" regression in `Exercise 5`. The only difference is in the vector which includes the control variables. This time it includes the additional variables from above which represent the trends in the areas before the treatment in 1990. 
 
-**Task:** In this chapter the vector of controls differs from the one in our "core" regression. That's why we have to define it here again. To do this run the given code. Note that this time the vector includes the additional variables `ln_avg_fam_income_dif_80`, `total_housing_units_dif_80`, `pop_dif_80` and `share_black_dif_80`.
+**Task:** In this chapter the vector of controls differs from the one in our "core" regression. That's why we have to define it here again. To do this run the presented code. Note that this time the vector includes the additional variables `ln_avg_fam_income_dif_80`, `total_housing_units_dif_80`, `pop_dif_80` and `share_black_dif_80`.
 ```{r "6__3"}
 my.controls_80 = c("share_black_dif_80", "pop_dif_80", "total_housing_units_dif_80", "ln_avg_fam_income_dif_80", "total_housing_units_dif", "share_units_occupied_dif", "share_occ_own_dif", "share_black_dif",  "share_latino_dif", "share_kids_dif", "share_over_65_dif", "share_foreign_born_dif",  "share_female_hhhead_dif", "share_same_house_dif",  "share_unemployed_dif", "share_manuf_empl_dif", "share_poor_dif", "share_public_assistance_dif", "ln_med_fam_income_dif", "share_edu_less_hs_dif", "share_edu_16plus_dif", "share_heat_coal_dif", "share_heat_wood_dif",  "share_kitchen_none_dif", "share_plumbing_full_dif", "pop_dense_dif",  "share_bdrm2_own_dif", "share_bdrm3_own_dif", "share_bdrm4_own_dif", "share_bdrm5_own_dif", "share_single_unit_d_own_dif", "share_single_unit_a_own_dif", "share_mobile_home_own_dif", "share_blt_5_10_own_dif", "share_blt_10_20_own_dif", "share_blt_20_30_own_dif", "share_blt_30_40_own_dif", "share_blt_40_50_own_dif", "share_blt_50plus_own_dif", "share_bdrm2_rnt_dif", "share_bdrm3_rnt_dif", "share_bdrm4_rnt_dif", "share_bdrm5_rnt_dif", "share_single_unit_d_rnt_dif", "share_single_unit_a_rnt_dif", "share_mobile_home_rnt_dif", "share_blt_5_10_rnt_dif", "share_blt_10_20_rnt_dif", "share_blt_20_30_rnt_dif", "share_blt_30_40_rnt_dif" ,"share_blt_40_50_rnt_dif", "share_blt_50plus_rnt_dif", "factor")
 ```
@@ -1116,7 +1112,7 @@ For a detailed presentation of this function check the box below.
 ```
 
 The application of this function is quite similar to the one of `mf()`.
-The only difference is that, in addition to the string which indicates the core part of the formula and the vector of control variables, you also have to deliver a string including all instruments. As already explained in the info box "ivreg()" this string of instruments has to include the defined instruments and all the exogenous regressors.
+The only difference is that, in addition to the string which indicates the core part of the formula and the vector of control variables, you also have to pass a string including all instruments. As already explained in the info box "ivreg()" this string of instruments has to include the defined instruments and all the exogenous regressors.
 
 **Task:** If you are interested in an example how `mf.iv()` works, press `check`.
 ```{r "6__6",optional=TRUE}
@@ -1127,25 +1123,25 @@ For more examples try to solve the following exercises. In doing so you should b
 
 As described above and in the info box we first have to define an additional vector which includes our detected instruments plus all exogenous regressors, before we can apply `mf.iv()`
 
-**Task:** Run the given code to create the vector `my.instr`.
+**Task:** Run the presented code to create the vector `my.instr`.
 ```{r "6__7"}
 my.instr = c("mntr_instr", "cnty_instr", "share_black_dif_80", "pop_dif_80", "total_housing_units_dif_80", "ln_avg_fam_income_dif_80", "total_housing_units_dif", "share_units_occupied_dif", "share_occ_own_dif", "share_black_dif",  "share_latino_dif", "share_kids_dif", "share_over_65_dif", "share_foreign_born_dif",  "share_female_hhhead_dif", "share_same_house_dif",  "share_unemployed_dif", "share_manuf_empl_dif", "share_poor_dif", "share_public_assistance_dif", "ln_med_fam_income_dif", "share_edu_less_hs_dif", "share_edu_16plus_dif", "share_heat_coal_dif", "share_heat_wood_dif",  "share_kitchen_none_dif", "share_plumbing_full_dif", "pop_dense_dif",  "share_bdrm2_own_dif", "share_bdrm3_own_dif", "share_bdrm4_own_dif", "share_bdrm5_own_dif", "share_single_unit_d_own_dif", "share_single_unit_a_own_dif", "share_mobile_home_own_dif", "share_blt_5_10_own_dif", "share_blt_10_20_own_dif", "share_blt_20_30_own_dif", "share_blt_30_40_own_dif", "share_blt_40_50_own_dif", "share_blt_50plus_own_dif", "share_bdrm2_rnt_dif", "share_bdrm3_rnt_dif", "share_bdrm4_rnt_dif", "share_bdrm5_rnt_dif", "share_single_unit_d_rnt_dif", "share_single_unit_a_rnt_dif", "share_mobile_home_rnt_dif", "share_blt_5_10_rnt_dif", "share_blt_10_20_rnt_dif", "share_blt_20_30_rnt_dif", "share_blt_30_40_rnt_dif" ,"share_blt_40_50_rnt_dif", "share_blt_50plus_rnt_dif", "factor")
 ```
 
 
 **Task:** Define the appropriate regression formula for this robustness check. 
-To do this you have to deliver the core part of the regression formula, the vector `my.controls_80` and the vector `my.instr` to `mf.iv()`.
+To do this you have to pass the core part of the regression formula, the vector `my.controls_80` and the vector `my.instr` to `mf.iv()`.
 As this is the first time we apply `mf.iv()` you just have to delete #, fill the gap with the core part of the regression and then press the `check` button.
 ```{r "6__8"}
 # form = mf.iv("...",controls=my.controls_80,instr=my.instr)
 
 ```
 
-After we created the regression formula in a way that it can be delivered to `ivreg()` we can run the robustness check now.
+After we created the regression formula in a way that it can be passed to `ivreg()` we can run the robustness check now.
 
 **Task:** Use the `ivreg()` command to run the robustness check. Consider only those areas that are included in `mile1`.
 Store the results in the variable `EarlierTrends1`. 
-To apply `ivreg()` you have to deliver the regression formula stored in `form` and the relevant data frame.
+To apply `ivreg()` you have to pass the regression formula stored in `form` and the relevant data frame.
 ```{r "6__9"}
 # EarlierTrends1 = ivreg(..., data=...)
 
@@ -1172,16 +1168,16 @@ Next, we experiment with alternative measures of non-attainment. That means we r
 So the new instrument indicates to which extent the corresponding monitor of an area exceeds the minimum level of the PM$_{10}$ concentration in 1991 and therefore should be a predictor of future changes in the air quality.
 (BFL(2014))
 
-Unfortunately there are some areas in the data set for which you couldn't observe the PM$_{10}$ concentration in 1991. This means that there is a missing data problem again. That's why we have to use `ivreg()` in the same way as we did it in the first robustness check.
-In this case the vector of controls is the same as in our "core" regression.
-But as explained above we adjust the choice of our instruments and therefore have to redefine the vector of instruments, before we can apply `mf.iv`.
+Unfortunately there are some areas in the data set for which one couldn't observe the PM$_{10}$ concentration in 1991. This means that there is a missing data problem again. That's why we have to use `ivreg()` in the same way as we did it in the first robustness check and as explained above we adjust the choice of our instruments and therefore have to redefine the vector of instruments, before we can apply `mf.iv`.
 
-**Task:** Run the given code to create the vector `my.instr_91`. Note that it includes the variable `mntr_cont_instr_91` instead of `mtnr_instr` and `cnty_instr`.
+**Task:** Run the presented code to create the vector `my.instr_91`. Note that it includes the variable `mntr_cont_instr_91` instead of `mtnr_instr` and `cnty_instr`.
 ```{r "6__12"}
 my.instr_91 = c("mntr_cont_instr_91", "total_housing_units_dif", "share_units_occupied_dif", "share_occ_own_dif", "share_black_dif",  "share_latino_dif", "share_kids_dif", "share_over_65_dif", "share_foreign_born_dif",  "share_female_hhhead_dif", "share_same_house_dif",  "share_unemployed_dif", "share_manuf_empl_dif", "share_poor_dif", "share_public_assistance_dif", "ln_med_fam_income_dif", "share_edu_less_hs_dif", "share_edu_16plus_dif", "share_heat_coal_dif", "share_heat_wood_dif",  "share_kitchen_none_dif", "share_plumbing_full_dif", "pop_dense_dif",  "share_bdrm2_own_dif", "share_bdrm3_own_dif", "share_bdrm4_own_dif", "share_bdrm5_own_dif", "share_single_unit_d_own_dif", "share_single_unit_a_own_dif", "share_mobile_home_own_dif", "share_blt_5_10_own_dif", "share_blt_10_20_own_dif", "share_blt_20_30_own_dif", "share_blt_30_40_own_dif", "share_blt_40_50_own_dif", "share_blt_50plus_own_dif", "share_bdrm2_rnt_dif", "share_bdrm3_rnt_dif", "share_bdrm4_rnt_dif", "share_bdrm5_rnt_dif", "share_single_unit_d_rnt_dif", "share_single_unit_a_rnt_dif", "share_mobile_home_rnt_dif", "share_blt_5_10_rnt_dif", "share_blt_10_20_rnt_dif", "share_blt_20_30_rnt_dif", "share_blt_30_40_rnt_dif" ,"share_blt_40_50_rnt_dif", "share_blt_50plus_rnt_dif", "factor")
 ```
 
-**Task:** Define the appropriate regression formula for this robustness check and store it into `form`. Use the function `mf.iv()`. If you don't remember how to do this look at the first robustness check.
+In this robustness check we do not consider trends before 1990. This means to consider the control variables, we can use the predefined vector `my.controls` again, just like we did in the previous chapters. 
+
+**Task:** Define the appropriate regression formula for this robustness check and store it into `form`. Use the function `mf.iv()`. If you don't remember how to do this, look at the first robustness check.
 ```{r "6__13"}
 # Enter your command here
 
@@ -1213,7 +1209,7 @@ To solve this chunk remember the first robustness check. The commands are very s
 Regarding the results for the areas located zero to one mile away from a monitor, we see that the coefficient of `pol_dif` has a value of (-0.0021). This value obviously is smaller than the one in our "core" regression. In addition to that, according to a p-value which is even higher than 0.5, it is not significant.
 In contrast to that, the results for the ares which are located five to ten miles away from the next monitor are qualitatively similar to the ones of the "core" regression. In particular they indicate a coefficient of (-0.00479) for `pol_dif` and a p-value which is about 0.24.
 
-Following BFL (2014) we can say that the results for the areas with an other manifestation of `ring`, which we didn't examine in particular, also are quite similar to the results of the "core" regression.
+Following BFL (2014) we can say that the results for the areas with another manifestation of `ring`, which we didn't examine in particular, also are quite similar to the results of the "core" regression.
 This means that, with the exception of the areas in the tightest ring, we can detect the same decreasing influence of the PM$_{10}$ concentration on house prices, as with the "core" regression. 
 
 ### More monitors
@@ -1231,10 +1227,9 @@ Store them into the variables `moremonitors1` and `moremonitors10`.
 ```
 
 Here we do not have problems with missing data, as it was the case with the two previous robustness checks. That's why we can use `felm()` again to run the IV regression.
-As the only difference compared to the "core" regression is in the considered data sets, the control variables don't have to be redefined here.
 
 **Task:** Define the appropriate regression formula for this robustness check. Store the result in `form`. To do this use the function `mf()`. 
-Compared to the "core" regression, the only difference is in the data sets which we examine. So in this case the regression formula is exactly the same as in `Exercise 5`.
+Because the only difference compared to the "core" regression is in the considered data sets we can use the predefined vector `my.controls` here again.
 ```{r "6__18"}
 # Enter you command here
 
@@ -1242,7 +1237,7 @@ Compared to the "core" regression, the only difference is in the data sets which
 
 Note that because we apply the `felm()` command in this robustness check we can use clustered standard errors here again.
 
-**Task:** Run an IV regression that examines the relationship between changes in house prices and a reduction in pollution. To do this you have to deliver the regression formula stored in the variable `form`, the instruments `mntr_instr` and `cnty_instr` and the cluster variable `fips`, which you have to define before, to the `felm()` command.
+**Task:** Run an IV regression that examines the relationship between changes in house prices and a reduction in pollution. To do this you have to pass the regression formula stored in the variable `form`, the instruments `mntr_instr` and `cnty_instr` and the cluster variable `fips`, which you have to define before, to the `felm()` command.
 Take only the areas into account that are included in `moremonitors1`.
 Store the results in `MoreMonitors1`.
 If you don't remember how to do this, look at `Exercise 5` or press `hint()`.
@@ -1270,7 +1265,7 @@ The summary of the regression which considers the areas located next to a monito
 For the areas that are located five to ten miles away from the next monitor the value for the coefficient of `pol_dif` is obvious smaller. To be precise it is (-0.00533).
 In addition to that the p-value is higher than 0.5, what means that this coefficient is obviously not significant.
 
-So in the end the results are again quite similar to those from the "core" regression, despite the additional data. This is caused by a higher noisiness in the readings which is due the additional unreliable monitors.
+So in the end the results are again quite similar to those from the "core" regression, despite the additional data. This is caused by an increased level of noise in the readings which is due the additional unreliable monitors.
 
 
 ### Conclusion
@@ -1284,7 +1279,7 @@ These robustness checks consider the following adjustments:
 - Instead of using partial areas when rings overlap, the observations are restricted on whole areas
 - Including region fixed effects
 - Exploiting information about the elevation of an area
-- Excluding California from the data set because it includes extremely many monitors exceeding the thresholds for the PM$_{10}$ concentration.
+- Excluding California from the data set because it includes many monitors exceeding the thresholds for the PM$_{10}$ concentration.
 
 (BFL (2014) online appendix)
 
@@ -1296,26 +1291,19 @@ All of these tests show similar results as the ones presented in this problem se
 ## Exercise 7 -- Sorting
 
 One additional concern in interpreting our results from `Exercsie 5` is that households may relocate in response to changes in the air quality.
-On the one hand the households could have sorted before 1990, such that those with the greatest distaste lived in the areas which were initially the cleanest. On the other hand they also could have sorted in response to the changes in pollution during the 90s. If this was the case, it would be quite problematical to use our results from `Exercise 5` for evaluating the distributional implications of the PM$_{10}$ reduction induced by the 1990 CAAA. (BFL (2014))
+On the one hand the households could have sorted before 1990, such that those with the greatest distaste lived in the areas which were initially the cleanest. On the other hand they also could have sorted in response to the changes in pollution during the 90s. If this was the case, it would be quite problematic to use our results from `Exercise 5` for evaluating the distributional implications of the PM$_{10}$ reduction induced by the 1990 CAAA. (BFL (2014))
 
 To get a first impression about this concern we select some neighborhood characteristics of the areas, compute the median change during the 90s and compare it to the median of the absolute values in 1990. This calculation is applied to the different groups of areas, which are again divided by their manifestation of the variable `ring`.
 In particular we consider the following characteristics of the areas: population density, number of houses owned by the inhabitants, number of people living in the same house as five years ago and the number of total housing units.
 
 The data set which includes the respective values for all areas is `BFL.dta`. 
 
-**Task:** Read in the data set `BFL.dta`. Store it into the variable `dat`.
+**Task:** To load the data set `BFL.dta` and to compute the median of `pop_dense_dif`, `pop_dense_90`, `share_units_occupied_dif`, `owner_occupied_units_90`, `share_same_house_dif`, `share_same_house_90` `total_housing_units_dif` and `total_housing_units_90` for the different groups of areas, divided by their manifestation of the variable `ring`, press `edit` and `check` afterwards. 
+The results are stored in the variables `change_pop_density`, `pop_density`, `change_owned_units`, `owned_units`, `change_share_same_house`, `share_same_house`, `change_total_units` and `total_units`.
+Here we use a combination of the `summarise()` and `group_by()` commands, as we already did it in `Exercise 2`. There you can find a corresponding info box.
 ```{r "7"}
-# Enter your command here
+dat = read.dta("BFL.dta")
 
-```
-
-Remember that if you press `Description` in the `Data Explorer`, you will get more detailed information about the variables which we want to use in this exercise.
-
-**Task:** Compute the median of `pop_dense_dif`, `pop_dense_90`, `share_units_occupied_dif`, `owner_occupied_units_90`, `share_same_house_dif`, `share_same_house_90` `total_housing_units_dif` and `total_housing_units_90` for the different groups of areas, divided by their manifestation of the variable `ring`.
-Store the results in the variables `change_pop_density`, `pop_density`, `change_owned_units`, `owned_units`, `change_share_same_house`, `share_same_house`, `change_total_units` and `total_units`.
-To run the calculation we use a combination of the `summarise()` and `group_by()` commands, as we already did it in `Exercise 2`. There you can find a corresponding info box.
-As this is a quite extensive command, just press the `check` button to solve this chunk.
-```{r "7__2"}
 dat %>%
    group_by(ring) %>%
    summarise(change_pop_density = median(pop_dense_dif),
@@ -1328,8 +1316,10 @@ dat %>%
             total_units = median(total_housing_units_90))
 ```
 
+Remember that if you press `Description` in the `Data Explorer`, you will get more detailed information about the variables which we use in this exercise.
+
 **Task:** You can enter whatever you think is needed to solve the following quiz.
-```{r "7__3",optional=TRUE}
+```{r "7__2",optional=TRUE}
 # Enter your command here
 ```
 
@@ -1341,10 +1331,10 @@ Following BFL (2014) we run some additional tests to examine whether there were 
 If there were re-sorting, you would expect to see differential rates of turnover, especially in the areas which experience particularly large reductions in PM$_{10}$.
 So in order to check this we use the clustered data sets `mile1.dta` and `mile10.dta` again, which include the areas that are located between zero and one mile respectively between five and ten miles away from a monitor.
 
-**Task:** Read in the data sets `mile1.dta` and `mile10.dta`. Store them into the variables `mile1` and `mile10`.
-```{r "7__4"}
-# Enter your command here
-
+**Task:** To load the data sets `mile1.dta` and `mile10.dta` and to store them into the variables `mile1` and `mile10` run the presented code.
+```{r "7__3"}
+mile1 = read.dta("mile1.dta")
+mile10 = read.dta("mile10.dta")
 ```
 
 As announced, in this chapter we replace the dependent variable of our regression model with the variables from the data set, at which we already had a look before.
@@ -1360,17 +1350,17 @@ Nevertheless we continue to use `felm()` to run the different IV regressions. If
 Let's start with the regression which examines the impact of PM$_{10}$ reductions on the change in the share of people living in the same house as five years ago. The variable which represents the change in the share of people living in the same house as five years ago is `share_same_house_dif`.
 Before we can run the regression with `share_same_house_dif` as dependent variable, we have to make sure that it is not included in the vector of control variables.
 
-**Task:** To create the fitted vector of control variables run the given code.
-```{r "7__5"}
+**Task:** To redefine the vector of control variables `my.controls` just press `check`.
+```{r "7__4"}
 my.controls = c("pop_dense_dif", "total_housing_units_dif", "share_occ_own_dif", "share_units_occupied_dif", "share_black_dif", "share_latino_dif", "share_kids_dif", "share_over_65_dif", "share_foreign_born_dif", "share_female_hhhead_dif", "share_unemployed_dif", "share_manuf_empl_dif", "share_poor_dif", "share_public_assistance_dif", "ln_med_fam_income_dif", "share_edu_less_hs_dif", "share_edu_16plus_dif", "share_heat_coal_dif", "share_heat_wood_dif", "share_kitchen_none_dif", "share_plumbing_full_dif", "share_bdrm2_own_dif", "share_bdrm3_own_dif", "share_bdrm4_own_dif", "share_bdrm5_own_dif", "share_single_unit_d_own_dif", "share_single_unit_a_own_dif", "share_mobile_home_own_dif", "share_blt_5_10_own_dif", "share_blt_10_20_own_dif", "share_blt_20_30_own_dif", "share_blt_30_40_own_dif", "share_blt_40_50_own_dif", "share_blt_50plus_own_dif", "share_bdrm2_rnt_dif", "share_bdrm3_rnt_dif", "share_bdrm4_rnt_dif", "share_bdrm5_rnt_dif", "share_single_unit_d_rnt_dif", "share_single_unit_a_rnt_dif", "share_mobile_home_rnt_dif", "share_blt_5_10_rnt_dif", "share_blt_10_20_rnt_dif", "share_blt_20_30_rnt_dif", "share_blt_30_40_rnt_dif", "share_blt_40_50_rnt_dif", "share_blt_50plus_rnt_dif")
 ```
 
 
 **Task:** Use `mf()` to define the regression formula with `share_same_house_dif` as dependent variable and `pol_dif` plus the control variables as independent variables.
-In `Exercise 3` there is a detailed description how to apply `mf()`.
+In `Exercise 3` is a detailed description how to apply `mf()`.
 To illustrate in what way the regression formulas in this chapter differ we name each variable which stores such a formula after the considered dependent variable.
-In this case you should store the regression formula in the variable `SameHouse`
-```{r "7__6"}
+In this case you should store the regression formula in the variable `SameHouse`.
+```{r "7__5"}
 # Enter your command here
 
 ```
@@ -1378,24 +1368,24 @@ In this case you should store the regression formula in the variable `SameHouse`
 Using this formula we can run a regression that examines the effect of PM$_{10}$ reductions on the change in the share of people living in the same house as five years ago. 
 
 **Task:** Run the regression which is explained above. 
-Therefore you have to deliver the regression formula stored in the variable `SameHouse`, the instruments `mntr_instr` and `cnty_instr` and the cluster variable `fips`, which you have to define before, to the `felm()` command.
+Therefore you have to pass the regression formula stored in the variable `SameHouse`, the instruments `mntr_instr` and `cnty_instr` and the cluster variable `fips`, which you have to define before, to the `felm()` command.
 Consider only the areas that belong to `mile1`.
 Store the results in the variable `SameHouse1`.
 If you don't know how to do this have a look at `Exercise 5` or press `hint()`.
-```{r "7__7"}
+```{r "7__6"}
 # Enter your command here
 
 ```
 
 **Task:** Run the same regression as above. But now take those areas into account, which are included in `mile10`. 
 Store the results in the variable `SameHouse10`.
-```{r "7__8"}
+```{r "7__7"}
 # Enter your command here
 
 ```
 
 **Task:** To show the summary of both regressions use `reg.summary()`.
-```{r "7__9",results='asis'}
+```{r "7__8",results='asis'}
 # Enter your command here
 
 ```
@@ -1417,7 +1407,7 @@ To run a regression with `pop_dense_dif` as dependent variable, we first have to
 Because the procedure to adapt the controls and to create the regression formula is quite similar in each examination of this chapter, we summarize these two steps in the following exercises.
 
 **Task:** To adapt the vector of control variables and to create an appropriate regression formula press `check`. This regression formula is stored in the variable `PopDense`.
-```{r "7__10"}
+```{r "7__9"}
 my.controls = c("share_same_house_dif", "total_housing_units_dif", "share_occ_own_dif", "share_units_occupied_dif", "share_black_dif", "share_latino_dif", "share_kids_dif", "share_over_65_dif", "share_foreign_born_dif", "share_female_hhhead_dif", "share_unemployed_dif", "share_manuf_empl_dif", "share_poor_dif", "share_public_assistance_dif", "ln_med_fam_income_dif", "share_edu_less_hs_dif", "share_edu_16plus_dif", "share_heat_coal_dif", "share_heat_wood_dif", "share_kitchen_none_dif", "share_plumbing_full_dif", "share_bdrm2_own_dif", "share_bdrm3_own_dif", "share_bdrm4_own_dif", "share_bdrm5_own_dif", "share_single_unit_d_own_dif", "share_single_unit_a_own_dif", "share_mobile_home_own_dif", "share_blt_5_10_own_dif", "share_blt_10_20_own_dif", "share_blt_20_30_own_dif", "share_blt_30_40_own_dif", "share_blt_40_50_own_dif", "share_blt_50plus_own_dif", "share_bdrm2_rnt_dif", "share_bdrm3_rnt_dif", "share_bdrm4_rnt_dif", "share_bdrm5_rnt_dif", "share_single_unit_d_rnt_dif", "share_single_unit_a_rnt_dif", "share_mobile_home_rnt_dif", "share_blt_5_10_rnt_dif", "share_blt_10_20_rnt_dif", "share_blt_20_30_rnt_dif", "share_blt_30_40_rnt_dif", "share_blt_40_50_rnt_dif", "share_blt_50plus_rnt_dif")
 
 PopDense = mf("pop_dense_dif ~ pol_dif",controls=my.controls)
@@ -1428,22 +1418,22 @@ PopDense = mf("pop_dense_dif ~ pol_dif",controls=my.controls)
 
 **Task:** Run a regression that examines the relationship between `pop_dense_dif` and `pol_dif`. Consider only the areas that belong to `mile1`.
 Store the results in the variable `PopDense1`.
-To get a hint how to do this, look at the previous regression of this chapter. The command differs only in the regression formula which you have to deliver.
+To get a hint how to do this, look at the previous regression of this chapter. The command differs only in the regression formula which you have to pass.
 Remember to define the cluster variable first.
-```{r "7__11"}
+```{r "7__10"}
 # Enter your command here
 
 ```
 
 **Task:** Run the same regression as above. But this time consider the areas that are included in `mile10`.
 Store the results in the variable `PopDense10`.
-```{r "7__12"}
+```{r "7__11"}
 # Enter your command here
 
 ```
 
 **Task:** Show the summary of both regressions. To do this use the `reg.summary()` command.
-```{r "7__13",results='asis'}
+```{r "7__12",results='asis'}
 # Enter your command here
 
 ```
@@ -1456,8 +1446,8 @@ So in this sub chapter we can state that areas experiencing a larger policy-indu
 
 The next regression explores the effect of PM$_{10}$ reductions on the change in the total number of households in an area. In the data sets this characteristic is represented by the variable `total_house_units_dif`. So in this case before we run the regression we have to exclude `total_house_units_dif` from the vector of control variables. 
 
-**Task:** To adapt the vector of control variables and to create the appropriate regression formula press the `check` button. The regression formula is stored in `TotalUnits`
-```{r "7__14"}
+**Task:** To adapt the vector of control variables and to create the appropriate regression formula press the `check` button. The regression formula is stored in `TotalUnits`.
+```{r "7__13"}
 my.controls = c("share_same_house_dif", "pop_dense_dif", "share_occ_own_dif", "share_units_occupied_dif", "share_black_dif", "share_latino_dif", "share_kids_dif", "share_over_65_dif", "share_foreign_born_dif", "share_female_hhhead_dif", "share_unemployed_dif", "share_manuf_empl_dif", "share_poor_dif", "share_public_assistance_dif", "ln_med_fam_income_dif", "share_edu_less_hs_dif", "share_edu_16plus_dif", "share_heat_coal_dif", "share_heat_wood_dif", "share_kitchen_none_dif", "share_plumbing_full_dif", "share_bdrm2_own_dif", "share_bdrm3_own_dif", "share_bdrm4_own_dif", "share_bdrm5_own_dif", "share_single_unit_d_own_dif", "share_single_unit_a_own_dif", "share_mobile_home_own_dif", "share_blt_5_10_own_dif", "share_blt_10_20_own_dif", "share_blt_20_30_own_dif", "share_blt_30_40_own_dif", "share_blt_40_50_own_dif", "share_blt_50plus_own_dif", "share_bdrm2_rnt_dif", "share_bdrm3_rnt_dif", "share_bdrm4_rnt_dif", "share_bdrm5_rnt_dif", "share_single_unit_d_rnt_dif", "share_single_unit_a_rnt_dif", "share_mobile_home_rnt_dif", "share_blt_5_10_rnt_dif", "share_blt_10_20_rnt_dif", "share_blt_20_30_rnt_dif", "share_blt_30_40_rnt_dif", "share_blt_40_50_rnt_dif", "share_blt_50plus_rnt_dif")
 
 TotalUnits = mf("total_housing_units_dif ~ pol_dif",controls=my.controls)
@@ -1465,20 +1455,20 @@ TotalUnits = mf("total_housing_units_dif ~ pol_dif",controls=my.controls)
 
 **Task:** Run a regression that examines the relationship between `total_housing_units_dif` and `pol_dif`. Consider only the areas that belong to `mile1`.
 Store the results in the variable `TotalUnits1`.
-```{r "7__15"}
+```{r "7__14"}
 # Enter your command here
 
 ```
 
 **Task:** Run the same regression as above. This time consider the areas that are included in `mile10`.
 Store the results in the variable `TotalUnits10`.
-```{r "7__16"}
+```{r "7__15"}
 # Enter your command here
 
 ```
 
 **Task:** To show the results of the two regressions use `reg.summary()`.
-```{r "7__17",results='asis'}
+```{r "7__16",results='asis'}
 # Enter your command here
 
 ```
@@ -1493,8 +1483,8 @@ Here we get p-values of 0.67 and 0.76 for our two coefficients of interest. This
 
 To complete our analysis we regard the impact of PM$_{10}$ reductions on the change in the share of owner-occupied units. The change in the share of owner-occupied units is represented by the variable `share_occ_own_dif` in the data set. That's why this time `share_occ_own_dif` has to be excluded from the vector of control variables.
 
-**Task:** Run the given code to adapt the control variables and to create the regression formula. In this case the regression formula is stored in the variable `OwnerUnits`.
-```{r "7__18"}
+**Task:** Run the presented code to adapt the control variables and to create the appropriate regression formula. In this case the regression formula is stored in the variable `OwnerUnits`.
+```{r "7__17"}
 my.controls = c("share_same_house_dif", "total_housing_units_dif", "pop_dense_dif", "share_units_occupied_dif", "share_black_dif", "share_latino_dif", "share_kids_dif", "share_over_65_dif", "share_foreign_born_dif", "share_female_hhhead_dif", "share_unemployed_dif", "share_manuf_empl_dif", "share_poor_dif", "share_public_assistance_dif", "ln_med_fam_income_dif", "share_edu_less_hs_dif", "share_edu_16plus_dif", "share_heat_coal_dif", "share_heat_wood_dif", "share_kitchen_none_dif", "share_plumbing_full_dif", "share_bdrm2_own_dif", "share_bdrm3_own_dif", "share_bdrm4_own_dif", "share_bdrm5_own_dif", "share_single_unit_d_own_dif", "share_single_unit_a_own_dif", "share_mobile_home_own_dif", "share_blt_5_10_own_dif", "share_blt_10_20_own_dif", "share_blt_20_30_own_dif", "share_blt_30_40_own_dif", "share_blt_40_50_own_dif", "share_blt_50plus_own_dif", "share_bdrm2_rnt_dif", "share_bdrm3_rnt_dif", "share_bdrm4_rnt_dif", "share_bdrm5_rnt_dif", "share_single_unit_d_rnt_dif", "share_single_unit_a_rnt_dif", "share_mobile_home_rnt_dif", "share_blt_5_10_rnt_dif", "share_blt_10_20_rnt_dif", "share_blt_20_30_rnt_dif", "share_blt_30_40_rnt_dif", "share_blt_40_50_rnt_dif", "share_blt_50plus_rnt_dif")
 
 OwnerUnits = mf("share_occ_own_dif ~ pol_dif",controls=my.controls)
@@ -1504,20 +1494,20 @@ As this is the last time in this problem set that we run our two regressions to 
 
 **Task:** Run a regression that estimates the effects of a PM$_{10}$ reduction on the share of owner-occupied units in an area. Consider only the areas that are included in `mile1`.
 Store the results in the variable `OwnerUnits1`.
-```{r "7__19"}
+```{r "7__18"}
 # Enter your command here
 
 ```
 
 **Task:** Run the same regression as above. But now consider the areas included in `mile10`.
 Store the results in the variable `OwnerUnits10`.
-```{r "7__20"}
+```{r "7__19"}
 # Enter your command here
 
 ```
 
 **Task:** Show the summary of both regressions. To do this use `reg.summary()`.
-```{r "7__21",results='asis'}
+```{r "7__20",results='asis'}
 # Enter your command here
 
 ```
@@ -1528,9 +1518,9 @@ Due to the p-values of 0.41 and 0.58, the results again are not significant. The
 
 ### Conclusion
 
-As explained in the introduction of this chapter, if there were re-sorting, you would expect to see different results for the areas which experience a higher reduction in PM$_{10}$ when you examine the effects of a PM$_{10}$ reduction on different neighborhood characteristics. This means that the results for the areas located next to a monitor should indicate a significant higher value for the coefficient of `pol_dif`.
+As explained in the introduction of this chapter, if there was re-sorting, you would expect to see different results for the areas which experience a higher reduction in PM$_{10}$ when you examine the effects of a PM$_{10}$ reduction on different neighborhood characteristics. This means that the results for the areas located next to a monitor should indicate a significant higher value for the coefficient of `pol_dif`.
 
-All our four tests show results for the effect of reductions in PM$_{10}$ that aren't significant. So the four characteristics don't seem to be affected by a change in pollution. That's why, in line with BFL (2014), we can reject the thesis that areas with a large policy-induced reduction in PM$_{10}$ differ in their turnover rates and therefore can state that the sorting responses to PM$_{10}$ reductions weren't large.
+All our four tests show results for the effect of reductions in PM$_{10}$ that aren't significant. So the four characteristics don't seem to be affected by a change in pollution. That's why, in line with BFL (2014), we can reject the hypothesis that areas with a large policy-induced reduction in PM$_{10}$ differ in their turnover rates and therefore can state that the sorting responses to PM$_{10}$ reductions weren't large.
 
 
 
@@ -1539,7 +1529,7 @@ All our four tests show results for the effect of reductions in PM$_{10}$ that a
 
 After we verified that our results from `Exercise 5` are valid, we can now use them to discuss the distributional implications of the 1990 CAAA-induced improvements in air quality. 
 In `Exercise 5` we found that the benefits of a PM$_{10}$ reduction caused by the CAAA in 1990 are larger for poorer people. Furthermore we learned that such reductions in PM$_{10}$ especially take place in the areas that are inhabited by lower income households. So these two results suggest that the benefits of improvements in air quality seem to be progressive.
-In contrast to that, previous researches on distributional impacts of environmental policy typically found that the benefits were regressive (Banzahf (2011), Fullerton (2011), Bento (2013)).
+In contrast to that, previous studies on distributional impacts of environmental policy typically found that the benefits were regressive (Banzahf (2011), Fullerton (2011), Bento (2013)).
 
 One reason for these different findings could be that, unlike the previous literature, we focus on a specific subgroup of the population in our analysis, namely the homeowners.
 We are aware of the fact that the population with the lowest income usually doesn't own houses, but has to pay rents instead, wherefore our approach using house prices as dependent variable doesn't take them into account.
@@ -1556,14 +1546,15 @@ It is the Marginal Willingness To Pay (MWTP). In our case it represents the annu
 In this problem set we don't execute this calculation on our own, but adopt the results of BFL (2014). If you are interested in the procedure how to calculate the MWTP, we can suggest Rosen (1974).
 Because the calculation of the MWTP is based on the results of our IV regression, the values represent the same variation across space as the results in `Exercise 5`.
 To be precise, the MWTP for the areas located zero to one mile away from a monitor is 129 dollars and decreases to 51 dollars for those areas located five to ten miles away from the next monitor. The value for the areas next to a monitor is quite similar to the results of other works, for example to the ones of Bayer et al. (2009), Lang (2012) or Bajari et al. (2012). 
-This suggests that exploiting our IV strategy we are doing at least something right.
+This suggests that by exploiting our IV strategy we are doing at least something right.
 
 Finally we want to have a closer look at the distribution of the income in all areas and therefore analyse if a progressive or regressive approach for the distribution of the benefits will lead to a higher overall welfare.
 If you are not interested in this additional analysis, you also can skip the last exercise of this chapter and go straight to the conclusion of this problem set.
 
-**Task:** Run the given code to have a look at the distribution of the income. In this case we estimate the income density by epanechnikov kernel.
+**Task:** Press `edit` and `check` afterwards to have a look at the distribution of the income. Note that in this case we estimate the income density by epanechnikov kernel.
 ```{r "8",optional=TRUE}
 dat = read.dta("BFL.dta")
+
 density_income=density(dat$median_family_income_90, kernel = "epanechnikov")
 plot(density_income, xlab="1990 Median Income", main="Distribution of the income")
 ```
@@ -1575,12 +1566,12 @@ plot(density_income, xlab="1990 Median Income", main="Distribution of the income
 
 
 
-This density plot is right-sided and therefore indicates that there are quite a lot of people with a relative low income and only a few people with a really high income over 100.000 dollars. Because progressive benefits imply that poorer people profit more than richer people, the increase in the overall welfare, induced by improvements in the air quality, should be higher in this case.
+This density plot is right-sided and therefore indicates that there are quite a lot of people with a relative low income and only a few people with a really high income over 100.000 dollars. Because progressive benefits imply that poorer people benefit more than richer people, the increase in the overall welfare, induced by improvements in the air quality, should be higher in this case.
 
 
 ## Exercise 9 -- Conclusion
 
-Before we conclude the analysis, we want to underline that in contrast to BFL (2014) we do not claim to consider the whole effects of the 1990 CAAA, but take only those regulations into account which affect the PM$_{10}$ concentration in the air. 
+Before we conclude the analysis, we want to emphasize that in contrast to BFL (2014) we do not claim to consider the whole effects of the 1990 CAAA, but take only those regulations into account which affect the PM$_{10}$ concentration in the air. 
 
 Using geographically divided data and running an instrumental variable regression, we examine the distribution of benefits associated with a PM$_{10}$ reduction induced by the Clean Air Act Amendments in the 1990s.
 In particular the CAAA created incentives for the local regulators to focus their actions on the dirtiest areas. This led to geographically uneven reductions in pollution.
@@ -1602,58 +1593,51 @@ awards()
 
 ### Bibliography
 
-- Anoop S. V. Shah, Kuan Ken Lee, McAllister A. David, Hunter Amanda, Harish Nair, Whiteley William, Langrish P. Jeremy, Newby E. David and Mills L. Nicholas (2015): "Short term exposure to air pollution and stroke: systematic review and meta-analysis", The BMJ 24 March 2015
+- Air Quality Standards Database (2016), https://www.epa.gov/aqs
+- Anoop S. V. Shah, Kuan Ken Lee, McAllister A. David, Hunter Amanda, Harish Nair, Whiteley William, Langrish P. Jeremy, Newby E. David and Mills L. Nicholas (2015): "Short term exposure to air pollution and stroke: systematic review and meta-analysis", The BMJ (British Medical Journal)
 -Auffhammer Maximillian, Bento Antonio and Lowe Scott (2009): "Measuring the Effects of the Clean Air Act Amendments on Ambient PM10 Concentrations: The Critical Importance of
 Spatially Disaggregated Analysis", Journal of Environmental Economics and Management
 58, 15-26
 - Bajari Patrick, Fruehwirth Jane, Kyoo Il Kim and Timmins Christopher (2012): "A Rational
-Expectations Approach to Hedonic Price Regressions with Time-Varying Unobserved Product Attributes: The Price of Pollution," American Economic Review 102, 1898-1926
+Expectations Approach to Hedonic Price Regressions with Time-Varying Unobserved Product Attributes: The Price of Pollution", American Economic Review 102, 1898-1926
 - Banzhaf, H. Spencer (2011): "Regulatory Impact Analyses of Environmental Justice Effects", Journal of Land Use and Environmental Law 27, 1-30
 - Bayer Patrick, Keohane Nathaniel, and Timmins Christopher (2009): "Migration and Hedonic
-Valuation: The Case of Air Quality," Journal of Environmental Economics and Management 58, 1-14.
-- Becker Randy and J. Vernon Henderson (2000): "Effects of Air Quality Regulations on Polluting Industries", Journal of Political Economy 108, 379-421
+Valuation: The Case of Air Quality", Journal of Environmental Economics and Management 58, 1-14
+- Becker Randy and Henderson J. Vernon (2000): "Effects of Air Quality Regulations on Polluting Industries", Journal of Political Economy 108, 379-421
 - Bento, Antonio (2013): "Equity Impacts of Environmental Policy", Annual Review of Resource Economics 5, 181-196
 - Bento Antonio, Freedman Matthew, and Lang Corey (2014): "Who Benefits from Environmental Regulation? Evidence from the Clean Air Act Amendments", Review of Economics and Statistics Vol. 97 No.3, 610-622
-- Bento Antonio, Matthew Freedman Matthwe and Lang Corey (2014): "Who Benefits from Environmental Regulation? Evidence from the Clean Air Act Amendments [Online Appendix]"
--Bound John, Jaeger A. David and Baker Regina (1993): "The Cure Can Be Worse than the Disease: A Cautionary Tale Regarding Instrumental Variables." NBER Technical Working Paper No. 137.
-- BusinessDictionnary: http://www.businessdictionary.com/
-- Chay Kenneth and Greenstone Michael (2005): "Does Air Quality Matter? Evidence from the Housing Market," Journal of Political Economy 113, 376-424.
-- Clean Air Act (1970): As Amended Through P.L. 108-201, February 24, 2004
-- Davidson R. and MacKinnon J. G. (1993): "Estimation and Inference in Econometrics", New York Oxford University Press
+- Bento Antonio, Freedman Matthew and Lang Corey (2014): "Who Benefits from Environmental Regulation? Evidence from the Clean Air Act Amendments [Online Appendix]", http://works.bepress.com/matthew_freedman/29/ 
+-Bound John, Jaeger A. David and Baker Regina (1990): "The Cure Can Be Worse than the Disease: A Cautionary Tale Regarding Instrumental Variables", Journal of the American Statistical Association 90 (June), 443-450
+- Chay Kenneth and Greenstone Michael (2005): "Does Air Quality Matter? Evidence from the Housing Market", Journal of Political Economy 113, 376-424
+- The Clean Air Act (1970) [As Amended Through P.L. 108-201, February 24, 2004], http://www.epw.senate.gov/envlaws/cleanair.pdf
 - Fullerton, Don (2011): "Six Distributional Effects of Environmental Policy", Risk Analysis 31, 923-929
-- Gamper-Rabindran Shanti, Mastromonaco Ralph and Timmins Christopher (2011):, "Valuing the
+- Gamper-Rabindran Shanti, Mastromonaco Ralph and Timmins Christopher (2011): "Valuing the
 Benefits of Superfund Site Remediation: Three Approaches to Measuring Localized
-Externalities," NBER Working Paper No. 16655
+Externalities", National Bureau of Economic Research Working Paper No. 16655
 - Gary, Simon (2004): "Simple Linear Regression", New York University, Stern School of Business 
-- GeoLytics: "GeoLytics Neighborhood Change Database", http://www.geolytics.com/USCensus,Neighborhood-Change-Database-1970-2000,Products.asp
-- Grainger, Corbett (2012): "The Distributional Effects of Pollution Regulations: Do Renters Fully Pay for Cleaner Air?" Journal of Public Economics 96, 840-852
+- GeoLytics Neighborhood Change Database (2010), http://www.geolytics.com/USCensus,Neighborhood-Change-Database-1970-2000,Products.asp
+- Grainger, Corbett (2012): "The Distributional Effects of Pollution Regulations: Do Renters Fully Pay for Cleaner Air?", Journal of Public Economics 96, 840-852
+- Green Book of the United States Environmental Protection Agency (2016), https://www3.epa.gov/airquality/greenbook/
 - Henderson, J. Vernon (1996): "Effects of Air Quality Regulations", American Economic Review 86, 789-813
 - Kennedy, Peter (2008): "A Guide to Econometrics 6th ed.", Wiley-Blackwell
-- Lang, Corey (2012): "The Dynamics of House Price Capitalization and Locational Sorting: Evidence from Air Quality Changes," CES Working Paper #12-22
-- Lu Xu and White Halbert (2014): "Robustness checks and robustness tests in applied economics", Journal of Econometrics, Volume 178, Part 1, Pages 194-206
-- Mankiw, N. Gregory (2011): "Principles of Economics", South-Western, 6th edition, International Edition
+- Lang, Corey (2012): "The Dynamics of House Price Capitalization and Locational Sorting: Evidence from Air Quality Changes",  U.S. Census Bureau Working Paper #12-22
+- Lu Xu and White Halbert (2014): "Robustness checks and robustness tests in applied economics", Journal of Econometrics, Volume 178, Part 1, 194-206
 - Nadeau, Louis (1997): "EPA Effectiveness at Reducing the Duration of Plant- Level Noncompliance", Journal of Environmental Economics and Management 34, 54-78
-- National Archives and Records Administration (2005), Federal Register, Title 42 Public Health, Chapter 85, Subchapter 1, Part D, Subpart 1, Par. 7509, United States Code of Federal Regulations
-- Robinson, H. David (1985): "Who Pays for Industrial Pollution Abatement?" Review of Economics and Statistics 67, 702-706
+- National Archives and Records Administration, Federal Register, Title 42 Public Health, Chapter 85, Subchapter 1, Part D, Subpart 1, Par. 7509, United States Code of Federal Regulations (2005)
+- Robinson, H. David (1985): "Who Pays for Industrial Pollution Abatement?", Review of Economics and Statistics 67, 702-706
 - Rosen, Sherwin (1974): "Hedonic Prices and Implicit Markets: Product Differentiation in Pure 
 Competition", Journal of Political Economy 82, 34-55
+- State FIPS Code Listing (2016), https://www.epa.gov/enviro/state-fips-code-listing
 - Stephens William, Ying Li, Lekkas Vassilis, Abraham Jesse, Calhoun Charles and Kimner Thomas (1995): "Conventional Mortgage Home Price Index", Journal of Housing Research, Volume 6, Issue 3
-- Stock H. James and Yogo Motohiro (2001): "Testing for Weak Instruments in Linear IV Regression", D.W.K. Andrews and J.H. Stock, eds., Identification and Inference for Econometric Models: Essays in Honor of Thomas J. Rothenberg. Cambridge: Cambridge University Press. 
+- Stock H. James and Yogo Motohiro (2001): "Testing for Weak Instruments in Linear IV Regression", Cambridge University Press 2005, 80-108
 - Stock H. James and Watson W. Mark (2007): "Introduction to Econometrics", International Edition. 2nd ed Upper Saddle River, NJ: Prentice Hall, Chapter 10
 - Umweltbundesamt (2016): "Feinstaub", http://www.umweltbundesamt.de/themen/luft/luftschadstoffe/feinstaub
 - United States Census Bureau (2010): "2010 FIPS Codes for Counties and County Equivalent Entities", https://www.census.gov/geo/reference/codes/cou.html
-- U.S. Environmental Protection Agency: "Air Quality Standards database", https://www.epa.gov/aqs
-- U.S. Environmental Protection Agency: "State FIPS Code Listing", https://www.epa.gov/enviro/state-fips-code-listing
 - U.S. Environmental Protection Agency (2005): National Ambient Air Quality Standards (NAAQS),
 https://www.epa.gov/criteria-air-pollutants/naaqs-table
 - U.S. Environmental Protection Agency (2011): "The Benefits and Costs of the Clean Air Act from 1990 to 2020", https://www.epa.gov/sites/production/files/2015-07/documents/summaryreport.pdf
 - U.S. Environmental Protection Agency (2015): "Evolution of the Clean Air Act", https://www.epa.gov/clean-air-act-overview/evolution-clean-air-act
-- U.S. Environmental Protection Agency (2016): "Green Book", https://www3.epa.gov/airquality/greenbook/
 - Williams, Richard (2015): "Heteroskedasticity", University of Notre Dame, http://www3.nd.edu/~rwilliam/
-- Wooldridge, Jeffrey M. (2003): "Cluster-Sample Methods in Applied Econometrics", The American Economic Review, Vol. 93, No. 2, pp. 133-138
-https://www.uibk.ac.at/econometrics/einf/03p.pdf
-- Wooldridge, Jeffrey M. (2008): "Introductory econometrics - a modern approach", South Western, 4th edition, International Edition, Chapter 13
-https://www.uibk.ac.at/econometrics/einf/03p.pdf
 - Wooldridge, Jeffrey M. (2010): "Econometric Analysis of Cross Section and Panel Data", The MIT Press, Cambridge, MA, 83-84
 
 ### R and Packages in R
@@ -1663,13 +1647,12 @@ https://www.uibk.ac.at/econometrics/einf/03p.pdf
 - Kleiber, Christian and Zeileis, Achim (2008): AER. "Applied Econometrics with R", R package version 1.2-4 http://CRAN.R-project.org/package=AER
 - Kranz, S. (2015): RTutor. "Creating R problem sets with automatic assessment of student's 
 solutions", R package version 2015.11.17 https://github.com/skranz/RTutor 
-- Lang, Duncan Temple and the CRAN Team (2015): XML. "Tools for Parsing and Generating XML Within R and S-Plus", R package version 3.98_1-3 http://www.omegahat.org/RSXML
 - Phillips, N. (2016): yarrr. "The Pirate Plot (2.0) - The RDI plotting choice of R pirates", R package version 2.0 http://www.r-bloggers.com/the-pirate-plot-2-0-the-rdi-plotting-choice-of-r-pirates/
 - R Core Team (2015): foreign. "Read Data Stored by Minitab, S, SAS, SPSS, Stata, Systat, Weka, dBase, ...", R package version 0.8-63 http://cran.r-project.org/package=foreign 
-- R Development Core Team (2015). R. "A language and environment for statistical computing, R Foundation for Statistical Computing", Vienna, Austria.  http://www.r-project.org 
+- R Development Core Team (2015). R. "A language and environment for statistical computing, R Foundation for Statistical Computing", http://www.r-project.org 
 - Wickham, H. and Francois, R. (2015): dplyr. "A Grammar of Data Manipulation", R package version 0.4.3 http://cran.r-project.org/web/packages/dplyr/index.html 
+- Wickham, H., Chang, W. (2015): ggplot2. An Implementation of the Grammar of Graphics, R package version 1.0.1 http://cran.r-project.org/web/packages/ggplot2/index.html
 -	Wickham, H. and Chang, W. (2016): devtools. "Tools to Make Developing R Packages Easier", R package version 1.11.1 https://cran.r-project.org/web/packages/devtools/index.html
-
 
 ## Exercise 11 Appendix
 
@@ -1679,7 +1662,7 @@ solutions", R package version 2015.11.17 https://github.com/skranz/RTutor
 At this point we examine the effect of PM$_{10}$ reductions induced by the 1990 CAAA on rents. In doing so we exploit the same IV approach as in `Exercise 5`, where we estimated the effect of PM$_{10}$ reductions on changes in house prices. This means in addition to the first difference-approach and the control variables, we apply `mntr_instr` and `cnty_instr` as instruments and cluster the standard errors at the county level.
 As it was the case with all the other IV regressions we only analyze the effects for the groups of areas that are located zero to one mile or five to ten miles away from the next monitor. We do this by considering the data sets `mile1.dta` and `mile10.dta`
 
-**Task:** To run the regressions which estimate the effects of PM$_{10}$ reductions induced by the 1990 CAAA on rents only for the areas located zero to one respectively five to ten miles away from the next monitor and to have a look at the results, press `check`.
+**Task:** To run the regressions which estimate the effects of PM$_{10}$ reductions induced by the 1990 CAAA on rents only for the areas located zero to one respectively five to ten miles away from the next monitor and to have a look at the results, press `edit` and `check` afterwards.
 ```{r "11_Appendix",results='asis'}
 mile1 = read.dta("mile1.dta")
 mile10 = read.dta("mile10.dta")
@@ -1698,4 +1681,4 @@ reg.summary(rents1, rents10)
 
 ```
 
-As you can see the values for the coefficients, which represent the effect of PM$_{10}$ reductions on changes in rents, are (0.0043) for the areas included in `mile1` and (-0.0023) for the areas included in `mile10`. But due to the p-values of around (0.14) respectively (0.21) these results clearly are not significant different from zero.
+As you can see the values for the coefficients, which represent the effect of PM$_{10}$ reductions on changes in rents, are (0.0043) for the areas included in `mile1` and (-0.0023) for the areas included in `mile10`. But due to the p-values of around (0.14) and (0.21) respectively these results are not significantly different from zero.
