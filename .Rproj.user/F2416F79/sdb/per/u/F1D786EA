@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "if (!require(devtools))\n  install.packages(\"devtools\")\nsource_gist(\"gist.github.com/skranz/fad6062e5462c9d0efe4\")\ninstall.rtutor(update.github=TRUE)\n\ninstall_github(\"ClaraUlmer/RTutorSoapOperas\")\n\nlibrary(RTutorSoapOperas)\n\n# Adapt your working directory to an existing folder\nsetwd(\"C:/problemsets/RTutorSoapOperas\")\n# Adapt your user name\nrun.ps(user.name=\"Jon Doe\", package=\"RTutorSoapOperas\",\n       load.sav=TRUE, sample.solution=FALSE)",
+    "created" : 1470061547144.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1570712137",
+    "id" : "F1D786EA",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1470061654420,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
