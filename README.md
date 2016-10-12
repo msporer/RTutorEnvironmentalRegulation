@@ -15,7 +15,7 @@ if (!require(devtools))
 source_gist("gist.github.com/skranz/fad6062e5462c9d0efe4")
 install.rtutor(update.github=TRUE)
   
-install_github("msporer/RTutorEnvironmentalRegulations")
+install_github("msporer/RTutorEnvironmentalRegulation")
 ```
 
 ## 2. Show and work on the problem set
